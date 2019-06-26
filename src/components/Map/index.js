@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import './style.css';
 // import 'react-leaflet-markercluster/dist/styles.min.css';
-
+// import L from 'leaflet';
 import {
   Map as LeafletMap,
-  // Marker,
+  Marker,
   TileLayer,
   // GeoJSON,
   ScaleControl,
   // CircleMarker,
   // Tooltip,
 } from 'react-leaflet';
-// import ButtonLocaliser from './buttonLocaliser';
+import constants from './const';
+
+import LocateButton from './locateButton';
+
+const { userIcon } = constants();
 
 
 class Map extends Component {
@@ -23,61 +27,29 @@ class Map extends Component {
         lat: 46.227638,
         lng: 2.213749,
       },
-      // haveUsersLocation: false,
+      haveUsersLocation: false,
       zoom: 15,
     };
   }
 
   componentDidMount() {
-    // const map = this.mapRef.current.leafletElement;
-
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => {
-    //     this.setState({
-    //       location: {
-    //         lat: position.coords.latitude,
-    //         lng: position.coords.longitude,
-    //       },
-    //       haveUsersLocation: true,
-    //     }, () => {
-    //       const { location, zoom } = this.state;
-    //       const { handleMove } = this.props;
-    //       handleMove(location);
-    //         this.antennas = data;
-    //         const markers = data.filter(m => map.getBounds().contains(m));
-
-    //         this.setState({
-    //           markers,
-    //         });
-    //       }).catch(err => console.error(err));
-    //     });
-    //   },
-    //   () => {
-    //     fetch('https://ipapi.co/json')
-    //       .then(res => res.json())
-    //       .then((location) => {
-    //         this.setState({
-    //           location: {
-    //             lat: location.latitude,
-    //             lng: location.longitude,
-    //           },
-    //           haveUsersLocation: true,
-    //         }, () => {
-    //           const { zoom } = this.state;
-    //           const { handleMove } = this.props;
-    //           handleMove(location);
-    //           antennaQuery(location.lng, location.lat, metterPerPixel(zoom)).then((data) => {
-    //             this.antennas = data;
-    //             const markers = data.filter(m => map.getBounds().contains(m));
-
-    //             this.setState({
-    //               markers,
-    //             });
-    //           }).catch(err => console.error(err));
-    //         });
-    //       });
-    //   },
-    // );
+    const map = this.mapRef.current.leafletElement;
+    map.locate({ setView: true, watch: false })
+      .on('locationfound', async (e) => {
+        const {
+          latitude, longitude,
+        } = e;
+        this.setState({ location: { lat: latitude, lng: longitude } });
+      })
+      .on('locationerror', (e) => {
+        console.log('Location access denied.', e);
+        fetch('https://ipapi.co/json')
+          .then(res => res.json())
+          .then(async (location) => {
+            const { latitude, longitude } = location;
+            this.setState({ location: { lat: latitude, lng: longitude } });
+          });
+      });
   }
 
   getToMyPosition = () => {
@@ -96,7 +68,7 @@ class Map extends Component {
   render() {
     // const { filters } = this.props;
     const {
-      location, // haveUsersLocation,
+      location, haveUsersLocation,
     } = this.state;
 
     return (
@@ -111,10 +83,10 @@ class Map extends Component {
         ref={this.mapRef}
       >
         <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
           url="http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png"
         />
-        {/* {
+        {
           haveUsersLocation
             ? (
               <Marker
@@ -123,8 +95,8 @@ class Map extends Component {
               />
             )
             : null
-        } */}
-        {/* <ButtonLocaliser getMyPosition={this.getToMyPosition} /> */}
+        }
+        <LocateButton getToMyPosition={this.getToMyPosition} />
         <ScaleControl
           position="bottomright"
           imperial={false}
