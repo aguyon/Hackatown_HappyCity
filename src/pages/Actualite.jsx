@@ -20,6 +20,7 @@ class Actualite extends Component {
           <DeleteRoundedIcon />
           <DeleteRoundedIcon />
         </Grid>
+        <h4>XX nouvelles solutions depuis votre dernière connexion</h4>
         <Grid
           item xs={12}
           container
