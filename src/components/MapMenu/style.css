@@ -1,0 +1,4 @@
+.MapMenu {
+  display: flex;
+  flex-direction: row;
+}
