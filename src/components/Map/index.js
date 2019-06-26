@@ -90,6 +90,7 @@ class Map extends Component {
   //   // const map = this.mapRef.current.leafletElement;
   //   // const center = e.target.getCenter();
   //   // const zoom = e.target.getZoom();
+  //   // console.log(zoom);
   // };
 
   render() {
@@ -103,9 +104,9 @@ class Map extends Component {
         preferCanvas
         className="map"
         center={location}
-        zoom={15}
+        zoom={16}
         maxZoom={18}
-        minZoom={6}
+        minZoom={16}
         // onMoveEnd={this.onMove}
         ref={this.mapRef}
       >
