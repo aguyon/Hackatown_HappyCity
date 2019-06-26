@@ -1,83 +1,70 @@
 import React, { Component } from 'react';
 import './style.css';
 // import 'react-leaflet-markercluster/dist/styles.min.css';
-
+import L from 'leaflet';
 import {
   Map as LeafletMap,
-  // Marker,
+  Marker,
   TileLayer,
-  // GeoJSON,
+  Popup,
   ScaleControl,
+  // GeoJSON,
   // CircleMarker,
   // Tooltip,
 } from 'react-leaflet';
-// import ButtonLocaliser from './buttonLocaliser';
+import constants from './const';
 
+import LocateButton from './locateButton';
+
+const { userIcon } = constants();
+
+// eslint-disable-next-line no-underscore-dangle
+delete L.Icon.Default.prototype._getIconUrl;
+
+/* eslint-disable global-require */
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+});
 
 class Map extends Component {
   constructor(props) {
     super(props);
     this.mapRef = React.createRef();
     this.state = {
+      markers: [[46.227638, 2.213749]],
       location: {
         lat: 46.227638,
         lng: 2.213749,
       },
-      // haveUsersLocation: false,
       zoom: 15,
     };
   }
 
   componentDidMount() {
-    // const map = this.mapRef.current.leafletElement;
+    const map = this.mapRef.current.leafletElement;
+    map.locate({ setView: true, watch: false })
+      .on('locationfound', async (e) => {
+        const {
+          latitude, longitude,
+        } = e;
+        this.setState({ location: { lat: latitude, lng: longitude } });
+      })
+      .on('locationerror', () => {
+        fetch('https://ipapi.co/json')
+          .then(res => res.json())
+          .then(async (location) => {
+            const { latitude, longitude } = location;
+            this.setState({ location: { lat: latitude, lng: longitude } });
+          });
+      });
+  }
 
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => {
-    //     this.setState({
-    //       location: {
-    //         lat: position.coords.latitude,
-    //         lng: position.coords.longitude,
-    //       },
-    //       haveUsersLocation: true,
-    //     }, () => {
-    //       const { location, zoom } = this.state;
-    //       const { handleMove } = this.props;
-    //       handleMove(location);
-    //         this.antennas = data;
-    //         const markers = data.filter(m => map.getBounds().contains(m));
-
-    //         this.setState({
-    //           markers,
-    //         });
-    //       }).catch(err => console.error(err));
-    //     });
-    //   },
-    //   () => {
-    //     fetch('https://ipapi.co/json')
-    //       .then(res => res.json())
-    //       .then((location) => {
-    //         this.setState({
-    //           location: {
-    //             lat: location.latitude,
-    //             lng: location.longitude,
-    //           },
-    //           haveUsersLocation: true,
-    //         }, () => {
-    //           const { zoom } = this.state;
-    //           const { handleMove } = this.props;
-    //           handleMove(location);
-    //           antennaQuery(location.lng, location.lat, metterPerPixel(zoom)).then((data) => {
-    //             this.antennas = data;
-    //             const markers = data.filter(m => map.getBounds().contains(m));
-
-    //             this.setState({
-    //               markers,
-    //             });
-    //           }).catch(err => console.error(err));
-    //         });
-    //       });
-    //   },
-    // );
+  addMarker = (e) => {
+    const { markers } = this.state;
+    markers.push(e.latlng);
+    this.setState({ markers });
   }
 
   getToMyPosition = () => {
@@ -90,13 +77,12 @@ class Map extends Component {
   //   // const map = this.mapRef.current.leafletElement;
   //   // const center = e.target.getCenter();
   //   // const zoom = e.target.getZoom();
-  //   // console.log(zoom);
   // };
 
   render() {
     // const { filters } = this.props;
     const {
-      location, // haveUsersLocation,
+      location, markers,
     } = this.state;
 
     return (
@@ -107,24 +93,34 @@ class Map extends Component {
         zoom={16}
         maxZoom={18}
         minZoom={16}
+        onClick={this.addMarker}
         // onMoveEnd={this.onMove}
         ref={this.mapRef}
       >
         <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
           url="http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png"
         />
-        {/* {
-          haveUsersLocation
-            ? (
-              <Marker
-                icon={userIcon}
-                position={location}
-              />
-            )
-            : null
-        } */}
-        {/* <ButtonLocaliser getMyPosition={this.getToMyPosition} /> */}
+
+        <Marker
+          icon={userIcon}
+          position={location}
+        />
+        {
+          markers.map((marker, i) => (
+            <Marker key={`marker-${i + 1}`} position={marker}>
+              <Popup>
+                <span>
+                  {
+                    'Je suis un marqueur sur une carte et c\'est cool'
+                  }
+                </span>
+              </Popup>
+            </Marker>
+          ))
+        }
+
+        <LocateButton getToMyPosition={this.getToMyPosition} />
         <ScaleControl
           position="bottomright"
           imperial={false}
