@@ -5,6 +5,7 @@ Application web développée à la [Wild Code School](https://wildcodeschool.com
 ## Technologies utilisées
 
 *  [ReactJs](https://reactjs.org)
+*  [Symfony](https://symfony.com/)
 *  [React Leaflet](https://react-leaflet.js.org/)
 *  [Material-Ui](https://material-ui.com)
 *  [OpenStreetMap](https://openstreetmap.org)
