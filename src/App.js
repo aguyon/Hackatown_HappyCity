@@ -6,6 +6,7 @@ import TheMap from './pages/TheMap';
 import Actualite from './pages/Actualite';
 import Admin from './pages/Admin';
 import Contact from './pages/Contact';
+import Profil from './pages/Profil';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/map" component={TheMap} />
         <Route path="/actualite" component={Actualite} />
         <Route path="/admin" component={Admin} />
+        <Route path="/profil" component={Profil} />
         <Route path="/contact" component={Contact} />
       </Switch>
     </div>
