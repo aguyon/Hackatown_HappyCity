@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './style.css';
 // import 'react-leaflet-markercluster/dist/styles.min.css';
-// import L from 'leaflet';
+import L from 'leaflet';
 import {
   Map as LeafletMap,
   Marker,
   TileLayer,
-  // GeoJSON,
+  Popup,
   ScaleControl,
+  // GeoJSON,
   // CircleMarker,
   // Tooltip,
 } from 'react-leaflet';
@@ -17,17 +18,26 @@ import LocateButton from './locateButton';
 
 const { userIcon } = constants();
 
+// eslint-disable-next-line no-underscore-dangle
+delete L.Icon.Default.prototype._getIconUrl;
+
+/* eslint-disable global-require */
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+});
 
 class Map extends Component {
   constructor(props) {
     super(props);
     this.mapRef = React.createRef();
     this.state = {
+      markers: [[46.227638, 2.213749]],
       location: {
         lat: 46.227638,
         lng: 2.213749,
       },
-      haveUsersLocation: false,
       zoom: 15,
     };
   }
@@ -41,8 +51,7 @@ class Map extends Component {
         } = e;
         this.setState({ location: { lat: latitude, lng: longitude } });
       })
-      .on('locationerror', (e) => {
-        console.log('Location access denied.', e);
+      .on('locationerror', () => {
         fetch('https://ipapi.co/json')
           .then(res => res.json())
           .then(async (location) => {
@@ -50,6 +59,12 @@ class Map extends Component {
             this.setState({ location: { lat: latitude, lng: longitude } });
           });
       });
+  }
+
+  addMarker = (e) => {
+    const { markers } = this.state;
+    markers.push(e.latlng);
+    this.setState({ markers });
   }
 
   getToMyPosition = () => {
@@ -62,13 +77,12 @@ class Map extends Component {
   //   // const map = this.mapRef.current.leafletElement;
   //   // const center = e.target.getCenter();
   //   // const zoom = e.target.getZoom();
-  //   // console.log(zoom);
   // };
 
   render() {
     // const { filters } = this.props;
     const {
-      location, haveUsersLocation,
+      location, markers,
     } = this.state;
 
     return (
@@ -79,6 +93,7 @@ class Map extends Component {
         zoom={16}
         maxZoom={18}
         minZoom={16}
+        onClick={this.addMarker}
         // onMoveEnd={this.onMove}
         ref={this.mapRef}
       >
@@ -86,16 +101,25 @@ class Map extends Component {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
           url="http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png"
         />
+
+        <Marker
+          icon={userIcon}
+          position={location}
+        />
         {
-          haveUsersLocation
-            ? (
-              <Marker
-                icon={userIcon}
-                position={location}
-              />
-            )
-            : null
+          markers.map((marker, i) => (
+            <Marker key={`marker-${i + 1}`} position={marker}>
+              <Popup>
+                <span>
+                  {
+                    'Je suis un marqueur sur une carte et c\'est cool'
+                  }
+                </span>
+              </Popup>
+            </Marker>
+          ))
         }
+
         <LocateButton getToMyPosition={this.getToMyPosition} />
         <ScaleControl
           position="bottomright"
