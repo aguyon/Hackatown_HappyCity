@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import L from 'leaflet';
 
-import uIcon from './assets/location.png';
+import uIcon from '../../assets/icons/here-green.png';
 
 function importAll(r) {
   return r.keys().map(r);
 }
-
 
 export default () => ({
 
@@ -23,7 +22,7 @@ export default () => ({
 
   userIcon: L.icon({
     iconUrl: uIcon,
-    iconSize: [50, 50],
+    iconSize: [44, 60],
     iconAnchor: [25, 25],
     popupAnchor: null,
     shadowUrl: null,
