@@ -10,6 +10,7 @@ import Actualite from './pages/Actualite';
 import Admin from './pages/Admin';
 import Contact from './pages/Contact';
 import Profil from './pages/Profil';
+import SuccessCheck from './components/SuccessCheck/SuccessCheck';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/success" component={SuccessCheck} />
           <Route path="/inscription" component={Inscription} />
           <Route path="/connexion" component={Connexion} />
           <Route path="/map" component={TheMap} />

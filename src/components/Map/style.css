@@ -36,3 +36,7 @@
 .leaflet-top.leaflet-left {
   display: none !important;
 }
+
+.leaflet-bottom.leaflet-right {
+  display: none !important;
+}
