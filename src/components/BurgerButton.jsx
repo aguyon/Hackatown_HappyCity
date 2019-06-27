@@ -1,36 +1,76 @@
 import React from 'react';
 import './BurgerButton.css';
 import { Link } from 'react-router-dom';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import { makeStyles } from '@material-ui/core/styles';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+
+const useStyles = makeStyles({
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+});
 
 const BurgerButton = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const classes = useStyles();
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
 
-  function handleClick(event) {
-    setAnchorEl(event.currentTarget);
-  }
+  const toggleDrawer = (side, open) => (event) => {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setState({ ...state, [side]: open });
+  };
 
-  function handleClose() {
-    setAnchorEl(null);
-  }
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <List>
+        <ListItem button>
+          <Link to="/map">La carte</Link>
+        </ListItem>
+        <ListItem button>
+          <Link to="/actualite">Les actu</Link>
+        </ListItem>
+        <ListItem button>
+          <Link to="/contact">Contact</Link>
+        </ListItem>
+      </List>
+      <Divider />
+    </div>
+  );
 
   return (
     <div>
-      <div>
-        <button type="button" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} className="BurgerButton" />
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={handleClose}><Link to="/map">La carte</Link></MenuItem>
-          <MenuItem onClick={handleClose}><Link to="/actualite">Les actu</Link></MenuItem>
-          <MenuItem onClick={handleClose}><Link to="/contact">Contact</Link></MenuItem>
-        </Menu>
-      </div>
+      <button
+        type="button"
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={toggleDrawer('left', true)}
+        className="BurgerButton"
+      />
+
+      <SwipeableDrawer
+        open={state.left}
+        onClose={toggleDrawer('left', false)}
+        onOpen={toggleDrawer('left', true)}
+      >
+        {sideList('left')}
+      </SwipeableDrawer>
     </div>
   );
 };

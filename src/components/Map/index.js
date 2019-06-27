@@ -13,9 +13,7 @@ import {
   // Tooltip,
 } from 'react-leaflet';
 import withContext from '../Context/withContext';
-
 import LocateButton from './locateButton';
-
 import constants from './const';
 
 const { userIcon } = constants();
@@ -97,7 +95,7 @@ class Map extends Component {
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
-          url="http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png"
+          url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png"
         />
 
         <Marker
@@ -107,7 +105,7 @@ class Map extends Component {
         {
           issues.map((issue, i) => (
             <Marker
-              // icon={marker.icon}
+              icon={issue.icon}
               key={`issue-${i + 1}`}
               position={issue.position}
             >
@@ -123,7 +121,7 @@ class Map extends Component {
         }
         <LocateButton getToMyPosition={this.getToMyPosition} />
         <ScaleControl
-          position="bottomright"
+          className="HappyScaleControl"
           imperial={false}
         />
       </LeafletMap>
