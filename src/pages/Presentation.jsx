@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import '../App.css';
+import Demo from './demo';
 // import ProfilButton from '../components/ProfilButton';
 
 
@@ -23,7 +24,7 @@ class Presentation extends Component {
           </Link>
         </Button>
         <div className="previewBox">
-          Presentation
+          <Demo />
         </div>
       </div>
     );
