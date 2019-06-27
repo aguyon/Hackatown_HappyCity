@@ -5,6 +5,7 @@ import {
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import './style.css';
+import withContext from '../Context/withContext';
 
 class Connexion extends Component {
   constructor(props) {
@@ -21,11 +22,14 @@ class Connexion extends Component {
     event.preventDefault();
 
     const { username, password } = this.state;
+    const { isLog } = this.props;
     axios.get(`http://134.209.194.234/api/users?username=${username}`).then((res) => {
       if (
-        res.data['hydra:member'][0].username === username
+        res.data['hydra:totalItems'] !== 0
+        && res.data['hydra:member'][0].username === username
         && res.data['hydra:member'][0].password === password
       ) {
+        isLog();
         this.setState({ redirect: true });
       } else {
         this.setState({ errmsg: 'Username or password invalid' });
@@ -101,4 +105,4 @@ class Connexion extends Component {
   }
 }
 
-export default Connexion;
+export default withContext(Connexion);
