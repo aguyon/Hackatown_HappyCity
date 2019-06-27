@@ -73,8 +73,8 @@ class Map extends Component {
         className="map"
         center={location}
         zoom={16}
-        // maxZoom={18}
-        // minZoom={16}
+        maxZoom={18}
+        minZoom={6}
         onClick={addMarker}
         // onMoveEnd={this.onMove}
         ref={this.mapRef}

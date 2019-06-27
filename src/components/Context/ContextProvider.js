@@ -12,6 +12,7 @@ class ContextProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      admin: false,
       selectedIcon: null,
       placingIcon: false,
       issues: [],
@@ -67,8 +68,10 @@ class ContextProvider extends Component {
   }
 
   componentWillMount() {
-    axios.get('http://134.209.194.234/api/issues')
-      .then(res => console.log(res.data['hydra:member']));
+    axios.get('http://134.209.194.234/api/types')
+      .then(res => this.setState({ issuesList: res.data['hydra:member'] }));
+    // axios.get('http://134.209.194.234/api/issues')
+    //   .then(res => console.log(res));
     axios.get('http://134.209.194.234/api/solutions')
       .then(res => this.setState({
         solutions: res.data['hydra:member'],
@@ -95,6 +98,7 @@ class ContextProvider extends Component {
 
   switchPlacingIcon = (bool) => {
     this.setState({
+      selectedIcon: null,
       placingIcon: bool,
       marker: null,
     });
