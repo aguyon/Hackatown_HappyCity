@@ -1,3 +1,11 @@
 .App {
   text-align: center;
 }
+
+a {
+  color: #00FF88;
+  font-weight: bold;
+}
+a:hover {
+  color: #00A54E;
+}
