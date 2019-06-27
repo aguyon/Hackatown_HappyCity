@@ -115,7 +115,7 @@ function MapMenu({
   return (
     <div>
       <div>
-        <Button onClick={toggleDrawer('bottom', true)}>Open Bottom</Button>
+        <Button className="HappyArrow" onClick={toggleDrawer('bottom', true)} />
         <div className="MapMenu">
           {
             placingIcon

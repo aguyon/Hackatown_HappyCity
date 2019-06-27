@@ -30,6 +30,36 @@ class ContextProvider extends Component {
           icon: issuesIcons[2],
         },
       ],
+      actucards: [
+        {
+          id: 50,
+          icon: issuesIcons[0],
+          title: 'The title',
+          description: 'Le maire met son message ici',
+          date: '10-10-19',
+          score: 485,
+          status: 'En cours',
+        },
+        {
+          id: 48,
+          icon: issuesIcons[1],
+          title: 'The title 1',
+          description: 'Le maire met son message ici 1',
+          score: 398,
+          status: 'Terminé',
+        },
+        {
+          id: 35,
+          icon: issuesIcons[2],
+          title: 'The title 2',
+          description: 'Le maire met son message ici 2',
+          score: 152,
+          status: 'Non résolu',
+        },
+      ],
+      solutions: [],
+      isLoggedIn: false,
+      isLog: this.isLog,
       addMarker: this.addMarker,
       selectIcon: this.selectIcon,
       switchPlacingIcon: this.switchPlacingIcon,
@@ -38,11 +68,11 @@ class ContextProvider extends Component {
 
   componentWillMount() {
     axios.get('http://134.209.194.234/api/issues')
-      .then((res) => {
-        console.log(res);
-        console.log(res.data['hydra:member']);
-        // this.setState({ issues: res.data['hydra:member'] });
-      });
+      .then(res => console.log(res.data['hydra:member']));
+    axios.get('http://134.209.194.234/api/solutions')
+      .then(res => this.setState({
+        solutions: res.data['hydra:member'],
+      }));
   }
 
   addMarker = (e) => {
@@ -68,6 +98,10 @@ class ContextProvider extends Component {
       placingIcon: bool,
       marker: null,
     });
+  }
+
+  isLog = () => {
+    this.setState({ isLoggedIn: true });
   }
 
   render() {

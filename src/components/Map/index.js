@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import './style.css';
 // import 'react-leaflet-markercluster/dist/styles.min.css';
-import L from 'leaflet';
 import {
   Map as LeafletMap,
   Marker,
   TileLayer,
   Popup,
-  ScaleControl,
   // GeoJSON,
   // CircleMarker,
   // Tooltip,
@@ -17,18 +15,6 @@ import LocateButton from './locateButton';
 import constants from './const';
 
 const { userIcon } = constants();
-
-// A virer quand on aura des icônes custom
-
-// eslint-disable-next-line no-underscore-dangle
-delete L.Icon.Default.prototype._getIconUrl;
-
-/* eslint-disable global-require */
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-});
 
 class Map extends Component {
   constructor(props) {
@@ -129,10 +115,6 @@ class Map extends Component {
           ))
         }
         <LocateButton getToMyPosition={this.getToMyPosition} />
-        <ScaleControl
-          className="HappyScaleControl"
-          imperial={false}
-        />
       </LeafletMap>
     );
   }
