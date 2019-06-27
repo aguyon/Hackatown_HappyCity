@@ -18,3 +18,26 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+
+.HappyButton {
+  width: 80px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  margin: 30px;
+}
+
+.HappyButton:hover {
+  background-color: #4CAF50;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.logoBox {
+  height: 200px;
+  margin: 30px;
+}
+
+.previewBox {
+  margin: 30px;
+  background-color: #00A54E;
+}

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import ProfilButton from '../components/ProfilButton';
 import BurgerButton from '../components/BurgerButton';
+import Presentation from './Presentation';
+import '../App.css';
 
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+
+    };
   }
 
   render() {
@@ -15,8 +19,8 @@ class Home extends Component {
           <BurgerButton />
           <ProfilButton />
         </div>
-        <div>
-          Coucou
+        <div className="presentation">
+          <Presentation />
         </div>
       </div>
     );
