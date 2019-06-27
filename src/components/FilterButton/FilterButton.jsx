@@ -1,11 +1,8 @@
 import React from 'react';
 import './FilterButton.css';
-import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
+import withContext from '../Context/withContext';
 
 const useStyles = makeStyles({
   list: {
@@ -16,7 +13,8 @@ const useStyles = makeStyles({
   },
 });
 
-const FilterButton = () => {
+const FilterButton = ({ issuesList, filters, changeFilters }) => {
+  console.log(filters)
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -36,21 +34,23 @@ const FilterButton = () => {
     <div
       className={classes.list}
       role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
     >
-      <List>
-        <ListItem button>
-          <Link to="/map" className="Vert">Carte</Link>
-        </ListItem>
-        <ListItem button>
-          <Link to="/actualite" className="Vert">Actus</Link>
-        </ListItem>
-        <ListItem button>
-          <Link to="/contact" className="Vert">Contact</Link>
-        </ListItem>
-      </List>
-      <Divider />
+      <form>
+        {
+          issuesList.map((issue, i) => (
+            <label>
+              {issue.name}
+              <input
+                type="checkbox"
+                name={issue.name}
+                checked={filters[issue.name]}
+                onChange={() => changeFilters(issue.name)}
+              />
+            </label>
+
+          ))
+        }
+      </form>
     </div>
   );
 
@@ -75,4 +75,4 @@ const FilterButton = () => {
   );
 };
 
-export default FilterButton;
+export default withContext(FilterButton);

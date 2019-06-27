@@ -54,7 +54,7 @@ function MapMenu({
             ? issuesList.map((issue, i) => (
               <div key={`issue-${i + 1}`}>
                 {
-                  issue.type
+                  issue.name
                 }
                 <button type="button" onClick={() => selectIcon(issue)}>
                   <img src={issue.icon} alt="" />

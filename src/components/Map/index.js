@@ -61,8 +61,9 @@ class Map extends Component {
   // };
 
   render() {
-    // const { filters } = this.props;
-    const { addMarker, issues, marker } = this.props;
+    const {
+      addMarker, issues, marker, filters,
+    } = this.props;
     const {
       location,
     } = this.state;
@@ -74,7 +75,7 @@ class Map extends Component {
         center={location}
         zoom={16}
         maxZoom={18}
-        minZoom={6}
+        minZoom={1}
         onClick={addMarker}
         // onMoveEnd={this.onMove}
         ref={this.mapRef}
@@ -99,19 +100,23 @@ class Map extends Component {
         />
         {
           issues.map((issue, i) => (
+            // filters[issue]
+            //   ? (
             <Marker
               icon={issue.icon}
               key={`issue-${i + 1}`}
-              position={issue.position}
+              position={issue.location}
             >
               <Popup>
                 <span>
                   {
-                    issue.text
+                    issue.description
                   }
                 </span>
               </Popup>
             </Marker>
+            // )
+            // : null
           ))
         }
         <LocateButton getToMyPosition={this.getToMyPosition} />
