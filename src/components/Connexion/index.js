@@ -88,16 +88,17 @@ class Connexion extends Component {
               disabled={!this.validateForm()}
               type="submit"
               value="Submit"
-              className="HappyButton"
+              className="HappyButton btnLogin"
             >
-              {redirect ? <Link to="/map">Login</Link> : null}
+              Login
+              {redirect ? <Link to="/map" /> : null}
             </Button>
           </FormGroup>
           <FormGroup>
-            <Button block type="submit" value="Submit" className="HappyButton">
+            <Button block type="submit" value="Submit" className="HappyButton btnRegister">
               <Link to="/inscription">Register</Link>
             </Button>
-            {errmsg}
+            <div className="errmsg">{errmsg}</div>
           </FormGroup>
         </Form>
       </div>
