@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Map from '../components/Map';
-import MapMenu from '../components/MapMenu';
+import MapMenu from '../components/MapMenu/MapMenu';
 import ProfilButton from '../components/ProfilButton';
 import BurgerButton from '../components/BurgerButton';
 

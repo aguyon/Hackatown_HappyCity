@@ -9,7 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import withContext from './Context/withContext';
+import withContext from '../Context/withContext';
 import './MapMenu.css';
 
 const useStyles = makeStyles({
@@ -108,15 +108,7 @@ function MapMenu({ issuesList, selectIcon }) {
   return (
     <div>
       <div>
-        <Button onClick={toggleDrawer('left', true)}>Open Left</Button>
         <Button onClick={toggleDrawer('bottom', true)}>Open Bottom</Button>
-        <SwipeableDrawer
-          open={state.left}
-          onClose={toggleDrawer('left', false)}
-          onOpen={toggleDrawer('left', true)}
-        >
-          {sideList('left')}
-        </SwipeableDrawer>
         <SwipeableDrawer
           anchor="bottom"
           open={state.bottom}
