@@ -18,3 +18,20 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+.HappyButton {
+  min-width: 66%;
+  height: 60px;
+  background-color: #00FF88;
+  border-style: none;
+  border-radius: 50px;
+  margin: 12px;
+  padding: 12px 24px 12px;
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+}
+.HappyButton:hover {
+  cursor: pointer;
+  background-color: #00A54E;
+  transition: 0.5s;
+}
