@@ -1,7 +1,6 @@
 import React from 'react';
 import './BurgerButton.css';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -19,7 +18,7 @@ const BurgerButton = () => {
   return (
     <div>
       <div>
-        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} className="BurgerButton" />
+        <button type="button" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} className="BurgerButton" />
         <Menu
           id="simple-menu"
           anchorEl={anchorEl}
@@ -27,6 +26,7 @@ const BurgerButton = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
+          <MenuItem onClick={handleClose}><Link to="/map">La carte</Link></MenuItem>
           <MenuItem onClick={handleClose}><Link to="/actualite">Les actu</Link></MenuItem>
           <MenuItem onClick={handleClose}><Link to="/contact">Contact</Link></MenuItem>
         </Menu>
