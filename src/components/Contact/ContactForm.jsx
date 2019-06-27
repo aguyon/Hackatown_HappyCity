@@ -31,10 +31,6 @@ class ContactForm extends Component {
       object,
       to,
     });
-    console.log(email);
-    console.log(content);
-    console.log(to);
-    console.log(object);
   };
 
   handleInputChange = (event) => {
