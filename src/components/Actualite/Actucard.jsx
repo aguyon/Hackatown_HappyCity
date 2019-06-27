@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Actucard({ issue }) {
+export default function Actucard({ solution }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [hided, setHided] = React.useState(false);
@@ -58,16 +58,16 @@ export default function Actucard({ issue }) {
         className={clsx(classes.cover, {
           [classes.hide]: hided,
         })}
-        image={issue.icon}
-        title={issue.title}
+        image={`./assets/${solution.issues.type.name}.png`}
+        title={solution.title}
       />
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
-            {issue.title}
+            {solution.title}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            {issue.description}
+            {solution.description}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>

@@ -53,6 +53,7 @@ class ContextProvider extends Component {
           icon: issuesIcons[0],
           title: 'The title',
           description: 'Le maire met son message ici',
+          date: '10-10-19',
           score: 485,
           status: 'En cours',
         },
@@ -73,6 +74,7 @@ class ContextProvider extends Component {
           status: 'Non résolu',
         },
       ],
+      solutions: [],
       addMarker: this.addMarker,
       selectIcon: this.selectIcon,
       isLoggedIn: false,
@@ -83,6 +85,10 @@ class ContextProvider extends Component {
   componentWillMount() {
     axios.get('http://134.209.194.234/api/issues')
       .then(res => console.log(res.data['hydra:member']));
+    axios.get('http://134.209.194.234/api/solutions')
+      .then(res => this.setState({
+        solutions: res.data['hydra:member'],
+      }));
   }
 
   addMarker = (e) => {
@@ -107,6 +113,7 @@ class ContextProvider extends Component {
   }
 
   render() {
+    console.log(this.state.solutions);
     const { children } = this.props;
     return (
       <Context.Provider value={this.state}>
