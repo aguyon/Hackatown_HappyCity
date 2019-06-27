@@ -11,6 +11,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import withContext from '../Context/withContext';
 import './MapMenu.css';
+import IssueForm from '../IssueForm';
 
 const useStyles = makeStyles({
   list: {
@@ -21,7 +22,9 @@ const useStyles = makeStyles({
   },
 });
 
-function MapMenu({ issuesList, selectIcon }) {
+function MapMenu({
+  issuesList, selectIcon, switchPlacingIcon, placingIcon,
+}) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -29,11 +32,23 @@ function MapMenu({ issuesList, selectIcon }) {
     bottom: false,
     right: false,
   });
+  const [confirmed, setConfirmed] = React.useState(false);
 
   const toggleDrawer = (side, open) => (event) => {
+    if (side === 'bottom' && open === false) {
+      setConfirmed(false);
+    }
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
+    setState({ ...state, [side]: open });
+  };
+
+  const confirmButton = (side, open) => (event) => {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setConfirmed(true);
     setState({ ...state, [side]: open });
   };
 
@@ -41,47 +56,82 @@ function MapMenu({ issuesList, selectIcon }) {
     <div>
       <div className="MapMenu">
         {
-          issuesList.map((issue, i) => (
-            <div key={`issue-${i + 1}`}>
-              {
-                issue.type
-              }
-              <button type="button" onClick={() => selectIcon(issue)}><img src={issue.icon} alt="" /></button>
-            </div>
-          ))
+          !confirmed
+            ? issuesList.map((issue, i) => (
+              <div key={`issue-${i + 1}`}>
+                {
+                  issue.type
+                }
+                <button type="button" onClick={() => selectIcon(issue)}>
+                  <img src={issue.icon} alt="" />
+                </button>
+              </div>
+            ))
+            : (
+              <div
+                className={classes.fullList}
+                role="presentation"
+                onClick={toggleDrawer(side, false)}
+                onKeyDown={toggleDrawer(side, false)}
+              >
+                <IssueForm />
+              </div>
+            )
         }
       </div>
-      <div
-        className={classes.fullList}
-        role="presentation"
-        onClick={toggleDrawer(side, false)}
-        onKeyDown={toggleDrawer(side, false)}
-      >
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
+      {
+        !confirmed
+          ? (
+            <div
+              className={classes.fullList}
+              role="presentation"
+              onClick={toggleDrawer(side, false)}
+              onKeyDown={toggleDrawer(side, false)}
+            >
+              <List>
+                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                  <ListItem button key={text}>
+                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                ))}
+              </List>
+              <Divider />
+              <List>
+                {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                  <ListItem button key={text}>
+                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                ))}
+              </List>
+            </div>
+          )
+          : null
+      }
     </div>
   );
 
   return (
     <div>
       <div>
-        <Button onClick={toggleDrawer('bottom', true)} className="HappyArrow" />
+        <Button className="HappyArrow" onClick={toggleDrawer('bottom', true)} />
+        <div className="MapMenu">
+          {
+            placingIcon
+              ? (
+                <div>
+                  <button className="HappyButton" type="button" onClick={confirmButton('bottom', true)}>Confirm</button>
+                  <button className="HappyButton" type="button" onClick={() => switchPlacingIcon(false)}>Cancel</button>
+                </div>
+              )
+              : issuesList.map((issue, i) => (
+                <div key={`issue-${i + 1}`}>
+                  <button type="button" onClick={() => selectIcon(issue)}><img src={issue.icon} alt="" /></button>
+                </div>
+              ))
+          }
+        </div>
         <SwipeableDrawer
           anchor="bottom"
           open={state.bottom}

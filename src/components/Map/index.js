@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
 // import 'react-leaflet-markercluster/dist/styles.min.css';
-import L from 'leaflet';
 import {
   Map as LeafletMap,
   Marker,
@@ -63,7 +62,7 @@ class Map extends Component {
 
   render() {
     // const { filters } = this.props;
-    const { addMarker, issues } = this.props;
+    const { addMarker, issues, marker } = this.props;
     const {
       location,
     } = this.state;
@@ -74,8 +73,8 @@ class Map extends Component {
         className="map"
         center={location}
         zoom={16}
-        maxZoom={18}
-        minZoom={16}
+        // maxZoom={18}
+        // minZoom={16}
         onClick={addMarker}
         // onMoveEnd={this.onMove}
         ref={this.mapRef}
@@ -84,7 +83,16 @@ class Map extends Component {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
           url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png"
         />
-
+        {
+          marker
+            ? (
+              <Marker
+                icon={marker.icon}
+                position={marker.position}
+              />
+            )
+            : null
+        }
         <Marker
           icon={userIcon}
           position={location}

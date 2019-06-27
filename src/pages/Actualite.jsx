@@ -5,7 +5,7 @@ import ProfilButton from '../components/ProfilButton/ProfilButton';
 import BurgerButton from '../components/BurgerButton/BurgerButton';
 import Actucard from '../components/Actualite/Actucard';
 
-function Actualite({ actucards }) {
+function Actualite({ solutions }) {
   return (
     <div>
       <div>
@@ -27,10 +27,10 @@ function Actualite({ actucards }) {
         alignItems="center"
       >
         {
-          actucards.map((card, i) => (
+          solutions.map((card, i) => (
             <div key={`card-${i + 1}`}>
               {
-                <Actucard issue={card} />
+                <Actucard solution={card} />
               }
             </div>
           ))

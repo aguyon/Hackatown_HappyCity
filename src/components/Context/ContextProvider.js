@@ -13,26 +13,9 @@ class ContextProvider extends Component {
     super(props);
     this.state = {
       selectedIcon: null,
-      issues: [
-        {
-          type: 'Espaces verts',
-          position: [46.227638, 2.213749],
-          icon: leafletIcon(issuesIcons[0]),
-          text: 'je suis un marqueur sur une map, super',
-        },
-        {
-          type: 'Espaces verts',
-          position: [46.223678, 2.213749],
-          icon: leafletIcon(issuesIcons[0]),
-          text: 'je suis un marqueur sur une map, super',
-        },
-        {
-          type: 'Espaces verts',
-          position: [46.227838, 2.213769],
-          icon: leafletIcon(issuesIcons[0]),
-          text: 'je suis un marqueur sur une map, super',
-        },
-      ],
+      placingIcon: false,
+      issues: [],
+      marker: null,
       issuesList: [
         {
           type: 'Espaces verts',
@@ -53,6 +36,7 @@ class ContextProvider extends Component {
           icon: issuesIcons[0],
           title: 'The title',
           description: 'Le maire met son message ici',
+          date: '10-10-19',
           score: 485,
           status: 'En cours',
         },
@@ -73,31 +57,51 @@ class ContextProvider extends Component {
           status: 'Non résolu',
         },
       ],
+      solutions: [],
+      isLoggedIn: false,
+      isLog: this.isLog,
       addMarker: this.addMarker,
       selectIcon: this.selectIcon,
+      switchPlacingIcon: this.switchPlacingIcon,
     };
   }
 
   componentWillMount() {
     axios.get('http://134.209.194.234/api/issues')
       .then(res => console.log(res.data['hydra:member']));
+    axios.get('http://134.209.194.234/api/solutions')
+      .then(res => this.setState({
+        solutions: res.data['hydra:member'],
+      }));
   }
 
   addMarker = (e) => {
-    const { issues, selectedIcon } = this.state;
+    const { selectedIcon } = this.state;
     if (selectedIcon) {
-      issues.push({
-        type: e.type,
-        icon: leafletIcon(selectedIcon.icon),
-        position: e.latlng,
-        text: 'je suis un marqueur sur une map, génial!',
+      this.setState({
+        placingIcon: true,
+        marker: {
+          type: e.type,
+          icon: leafletIcon(selectedIcon.icon),
+          position: e.latlng,
+        },
       });
-      this.setState({ issues });
     }
   }
 
   selectIcon = (icon) => {
     this.setState({ selectedIcon: icon });
+  }
+
+  switchPlacingIcon = (bool) => {
+    this.setState({
+      placingIcon: bool,
+      marker: null,
+    });
+  }
+
+  isLog = () => {
+    this.setState({ isLoggedIn: true });
   }
 
   render() {
