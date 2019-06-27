@@ -22,7 +22,7 @@ class Connexion extends Component {
     event.preventDefault();
 
     const { username, password } = this.state;
-    const { isLog } = this.props;
+    const { isLog, getUserInfo } = this.props;
     axios.get(`http://134.209.194.234/api/users?username=${username}`).then((res) => {
       if (
         res.data['hydra:totalItems'] !== 0
@@ -30,6 +30,7 @@ class Connexion extends Component {
         && res.data['hydra:member'][0].password === password
       ) {
         isLog();
+        getUserInfo(res.data['hydra:member'][0]);
         this.setState({ redirect: true });
       } else {
         this.setState({ errmsg: 'Username or password invalid' });

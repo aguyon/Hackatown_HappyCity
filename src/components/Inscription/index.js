@@ -155,6 +155,13 @@ class Inscription extends Component {
           >
             Register
           </Button>
+          <Button
+            type="submit"
+            value="Submit"
+            className="HappyButton btnRegister"
+          >
+            <Link to="/connexion">Login</Link>
+          </Button>
         </Form>
       </div>
     );
