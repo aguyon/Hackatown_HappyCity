@@ -5,6 +5,7 @@
 .Vert {
   color: #00FF88;
   font-weight: bold;
+  text-decoration: none;
 }
 .Vert:hover {
   color: #00A54E;

@@ -41,10 +41,10 @@ const BurgerButton = () => {
     >
       <List>
         <ListItem button>
-          <Link to="/map" className="Vert">La carte</Link>
+          <Link to="/map" className="Vert">Carte</Link>
         </ListItem>
         <ListItem button>
-          <Link to="/actualite" className="Vert">Les actu</Link>
+          <Link to="/actualite" className="Vert">Actus</Link>
         </ListItem>
         <ListItem button>
           <Link to="/contact" className="Vert">Contact</Link>

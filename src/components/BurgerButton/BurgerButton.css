@@ -1,8 +1,8 @@
-.ProfilButton {
+.BurgerButton {
   position: absolute;
-  right: 24px;
+  left: 24px;
   top: 24px;
-  background-image: url("../assets/icons/profil-green.png");
+  background-image: url("../../assets/icons/burger-green.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
