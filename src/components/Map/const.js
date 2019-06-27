@@ -19,6 +19,8 @@ export default () => ({
     ),
   }),
 
+  leafletLatLng: pos => L.latLng(pos),
+
   issuesIcons: importAll(require.context('../../assets/icons/issues', false, /\.(png)$/)),
 
   userIcon: L.icon({

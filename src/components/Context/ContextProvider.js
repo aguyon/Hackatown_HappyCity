@@ -13,26 +13,9 @@ class ContextProvider extends Component {
     super(props);
     this.state = {
       selectedIcon: null,
-      issues: [
-        {
-          type: 'Espaces verts',
-          position: [46.227638, 2.213749],
-          icon: leafletIcon(issuesIcons[0]),
-          text: 'je suis un marqueur sur une map, super',
-        },
-        {
-          type: 'Espaces verts',
-          position: [46.223678, 2.213749],
-          icon: leafletIcon(issuesIcons[0]),
-          text: 'je suis un marqueur sur une map, super',
-        },
-        {
-          type: 'Espaces verts',
-          position: [46.227838, 2.213769],
-          icon: leafletIcon(issuesIcons[0]),
-          text: 'je suis un marqueur sur une map, super',
-        },
-      ],
+      placingIcon: false,
+      issues: [],
+      marker: null,
       issuesList: [
         {
           type: 'Espaces verts',
@@ -49,29 +32,42 @@ class ContextProvider extends Component {
       ],
       addMarker: this.addMarker,
       selectIcon: this.selectIcon,
+      switchPlacingIcon: this.switchPlacingIcon,
     };
   }
 
   componentWillMount() {
     axios.get('http://134.209.194.234/api/issues')
-      .then(res => console.log(res.data['hydra:member']));
+      .then((res) => {
+        console.log(res);
+        console.log(res.data['hydra:member']);
+        // this.setState({ issues: res.data['hydra:member'] });
+      });
   }
 
   addMarker = (e) => {
-    const { issues, selectedIcon } = this.state;
+    const { selectedIcon } = this.state;
     if (selectedIcon) {
-      issues.push({
-        type: e.type,
-        icon: leafletIcon(selectedIcon.icon),
-        position: e.latlng,
-        text: 'je suis un marqueur sur une map, génial!',
+      this.setState({
+        placingIcon: true,
+        marker: {
+          type: e.type,
+          icon: leafletIcon(selectedIcon.icon),
+          position: e.latlng,
+        },
       });
-      this.setState({ issues });
     }
   }
 
   selectIcon = (icon) => {
     this.setState({ selectedIcon: icon });
+  }
+
+  switchPlacingIcon = (bool) => {
+    this.setState({
+      placingIcon: bool,
+      marker: null,
+    });
   }
 
   render() {
