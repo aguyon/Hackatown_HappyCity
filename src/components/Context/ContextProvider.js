@@ -13,26 +13,9 @@ class ContextProvider extends Component {
     super(props);
     this.state = {
       selectedIcon: null,
-      issues: [
-        {
-          type: 'Espaces verts',
-          position: [46.227638, 2.213749],
-          icon: leafletIcon(issuesIcons[0]),
-          text: 'je suis un marqueur sur une map, super',
-        },
-        {
-          type: 'Espaces verts',
-          position: [46.223678, 2.213749],
-          icon: leafletIcon(issuesIcons[0]),
-          text: 'je suis un marqueur sur une map, super',
-        },
-        {
-          type: 'Espaces verts',
-          position: [46.227838, 2.213769],
-          icon: leafletIcon(issuesIcons[0]),
-          text: 'je suis un marqueur sur une map, super',
-        },
-      ],
+      placingIcon: false,
+      issues: [],
+      marker: null,
       issuesList: [
         {
           type: 'Espaces verts',
@@ -75,10 +58,11 @@ class ContextProvider extends Component {
         },
       ],
       solutions: [],
-      addMarker: this.addMarker,
-      selectIcon: this.selectIcon,
       isLoggedIn: false,
       isLog: this.isLog,
+      addMarker: this.addMarker,
+      selectIcon: this.selectIcon,
+      switchPlacingIcon: this.switchPlacingIcon,
     };
   }
 
@@ -92,15 +76,16 @@ class ContextProvider extends Component {
   }
 
   addMarker = (e) => {
-    const { issues, selectedIcon } = this.state;
+    const { selectedIcon } = this.state;
     if (selectedIcon) {
-      issues.push({
-        type: e.type,
-        icon: leafletIcon(selectedIcon.icon),
-        position: e.latlng,
-        text: 'je suis un marqueur sur une map, génial!',
+      this.setState({
+        placingIcon: true,
+        marker: {
+          type: e.type,
+          icon: leafletIcon(selectedIcon.icon),
+          position: e.latlng,
+        },
       });
-      this.setState({ issues });
     }
   }
 
@@ -108,12 +93,18 @@ class ContextProvider extends Component {
     this.setState({ selectedIcon: icon });
   }
 
+  switchPlacingIcon = (bool) => {
+    this.setState({
+      placingIcon: bool,
+      marker: null,
+    });
+  }
+
   isLog = () => {
     this.setState({ isLoggedIn: true });
   }
 
   render() {
-    console.log(this.state.solutions);
     const { children } = this.props;
     return (
       <Context.Provider value={this.state}>
