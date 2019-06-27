@@ -4,7 +4,7 @@ import axios from 'axios';
 import {
   Button, Form, FormGroup, Input,
 } from 'reactstrap';
-import Modal from 'react-bootstrap/Modal';
+import { Link } from 'react-router-dom';
 
 class Inscription extends Component {
   constructor(props) {
@@ -16,13 +16,16 @@ class Inscription extends Component {
       email: '',
       password: '',
       confpassword: '',
-      show: false,
     };
   }
 
+  handleOpen = () => {
+    this.setState({ show: true });
+  };
+
   handleClose = () => {
     this.setState({ show: false });
-  }
+  };
 
   handleInputChange = (event) => {
     const { target } = event;
@@ -78,96 +81,83 @@ class Inscription extends Component {
       email,
       password,
       confpassword,
-      show,
     } = this.state;
     return (
-      <div>
-        <div className="form_container">
-          <div className="title">
-            <h2>Register</h2>
-          </div>
-          <Form onSubmit={this.handleSubmit}>
-            <FormGroup>
-              <Input
-                name="firstname"
-                type="firstname"
-                className="inputRegister"
-                checked={firstname}
-                onChange={this.handleInputChange}
-                placeholder="Firstname"
-              />
-            </FormGroup>
-            <FormGroup>
-              <Input
-                name="lastname"
-                type="lastname"
-                className="inputRegister"
-                checked={lastname}
-                onChange={this.handleInputChange}
-                placeholder="Lastname"
-              />
-            </FormGroup>
-            <FormGroup>
-              <Input
-                name="username"
-                type="username"
-                className="inputRegister"
-                checked={username}
-                onChange={this.handleInputChange}
-                placeholder="Username"
-              />
-            </FormGroup>
-            <FormGroup>
-              <Input
-                name="email"
-                type="email"
-                className="inputRegister"
-                checked={email}
-                onChange={this.handleInputChange}
-                placeholder="Email"
-              />
-            </FormGroup>
-            <FormGroup>
-              <Input
-                name="password"
-                type="password"
-                className="inputRegister"
-                checked={password}
-                onChange={this.handleInputChange}
-                placeholder="Password"
-              />
-            </FormGroup>
-            <FormGroup>
-              <Input
-                name="confpassword"
-                type="password"
-                className="inputRegister"
-                checked={confpassword}
-                onChange={this.handleInputChange}
-                placeholder="Confirm Password"
-              />
-            </FormGroup>
-            <Button
-              type="submit"
-              value="Submit"
-              className="HappyButton"
-              disabled={!this.validateForm()}
-            >
-              Register
-            </Button>
-          </Form>
-          <Modal id="modalAlerte" show={show} onHide={this.handleClose}>
-            <Modal.Header closeButton />
-            <Modal.Body id="modalBody">
-              <div>
-                <h4>
-                A user was submitted:
-                  {username}
-                </h4>
-              </div>
-            </Modal.Body>
-          </Modal>
+      <div className="form_container">
+        <div className="title">
+          <h2>Register</h2>
         </div>
+        <Form onSubmit={this.handleSubmit}>
+          <FormGroup>
+            <Input
+              name="firstname"
+              type="firstname"
+              className="inputRegister"
+              checked={firstname}
+              onChange={this.handleInputChange}
+              placeholder="Firstname"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              name="lastname"
+              type="lastname"
+              className="inputRegister"
+              checked={lastname}
+              onChange={this.handleInputChange}
+              placeholder="Lastname"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              name="username"
+              type="username"
+              className="inputRegister"
+              checked={username}
+              onChange={this.handleInputChange}
+              placeholder="Username"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              name="email"
+              type="email"
+              className="inputRegister"
+              checked={email}
+              onChange={this.handleInputChange}
+              placeholder="Email"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              name="password"
+              type="password"
+              className="inputRegister"
+              checked={password}
+              onChange={this.handleInputChange}
+              placeholder="Password"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              name="confpassword"
+              type="password"
+              className="inputRegister"
+              checked={confpassword}
+              onChange={this.handleInputChange}
+              placeholder="Confirm Password"
+            />
+          </FormGroup>
+          <Button
+            type="submit"
+            value="Submit"
+            className="HappyButton"
+            disabled={!this.validateForm()}
+            onClick={this.handleOpen}
+          >
+            <Link to="/connexion">Register</Link>
+          </Button>
+        </Form>
       </div>
     );
   }

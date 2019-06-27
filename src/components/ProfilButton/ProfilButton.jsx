@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import './ProfilButton.css';
 import { Link } from 'react-router-dom';
+import withContext from '../Context/withContext';
 
 class ProfilButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false,
     };
   }
 
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn } = this.props;
     if (isLoggedIn) {
-      return (<Link to="/profil" />);
+      return (
+        <Link to="/profil">
+          <div className="ProfilButton" />
+        </Link>
+      );
     }
     return (
       <Link to="/connexion">
@@ -23,4 +27,4 @@ class ProfilButton extends Component {
   }
 }
 
-export default ProfilButton;
+export default withContext(ProfilButton);
