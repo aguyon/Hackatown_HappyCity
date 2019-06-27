@@ -19,9 +19,13 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+
 .HappyButton {
+  width: 80px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
   min-width: 66%;
-  height: 60px;
+  height: 50px;
   background-color: #00FF88;
   border-style: none;
   border-radius: 50px;
@@ -31,8 +35,44 @@ button {
   font-weight: bold;
   font-size: 1.3em;
 }
+
 .HappyButton:hover {
+  background-color: #4CAF50;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   cursor: pointer;
-  background-color: #00A54E;
   transition: 0.5s;
+}
+
+.logoBox {
+  height: 100px;
+  margin: 20px;
+  margin-top: 60px;
+  margin-bottom: 75px;
+  /*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);*/
+  border-radius: 100%;
+}
+
+.previewBox {
+  margin: 10px;
+  height: 150px;
+  box-shadow: px 5px 5px rgba(0,0,0,0.24);
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #00FF88;
+  background-color: rgb(190, 250, 218);
+}
+
+.demo{
+  height: 100px;
+  font-size: 1.25%;
+}
+
+.logo {
+  max-height: 80px;
+  margin-top: 120px;
+}
+
+.Icon {
+  max-height: 170px;;
 }
