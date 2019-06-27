@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
+import Inscription from './pages/Inscription';
 import TheMap from './pages/TheMap';
 import Actualite from './pages/Actualite';
 import Admin from './pages/Admin';
@@ -13,6 +14,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/inscription" component={Inscription} />
         <Route path="/map" component={TheMap} />
         <Route path="/actualite" component={Actualite} />
         <Route path="/admin" component={Admin} />
