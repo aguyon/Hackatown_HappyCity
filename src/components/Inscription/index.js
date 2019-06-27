@@ -4,7 +4,7 @@ import axios from 'axios';
 import {
   Button, Form, FormGroup, Input,
 } from 'reactstrap';
-import Modal from 'react-bootstrap/Modal';
+import { Modal } from 'react-bootstrap';
 
 class Inscription extends Component {
   constructor(props) {
