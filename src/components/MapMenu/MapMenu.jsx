@@ -12,6 +12,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import withContext from '../Context/withContext';
 import './MapMenu.css';
 import IssueForm from '../IssueForm';
+import SearchBar from '../Map/search';
 
 const useStyles = makeStyles({
   list: {
@@ -105,6 +106,7 @@ function MapMenu({
                   </ListItem>
                 ))}
               </List>
+              <SearchBar type="submit" class="searchButton" />
             </div>
           )
           : null
