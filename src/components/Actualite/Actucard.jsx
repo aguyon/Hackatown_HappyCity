@@ -1,4 +1,5 @@
 import React from 'react';
+import './ActuCard.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,7 +15,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const useStyles = makeStyles(theme => ({
   card: {
     display: 'flex',
-    marginTop: 30,
+    marginTop: 24,
+    borderBottom: '7px solid #00FF88',
   },
   details: {
     display: 'flex',
@@ -37,7 +39,8 @@ const useStyles = makeStyles(theme => ({
     flex: '1 0 auto',
   },
   cover: {
-    width: 151,
+    height: 10,
+    width: 10,
   },
 }));
 
@@ -90,25 +93,26 @@ export default function Actucard({ solution }) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Method:</Typography>
+            <Typography paragraph>Details</Typography>
             <Typography paragraph>
-              Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-              minutes.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id vulputate lacus.
+              Nam dignissim placerat ante. Proin et enim vel mi maximus tincidunt.
+              In tincidunt sit amet turpis a gravida. Aenean vehicula id nisl faucibus pharetra.
+              Pellentesque porta sodales eros, tincidunt ultricies est faucibus eget.
+              Nulla et lacus nulla.
+              Nullam non euismod dolor. Etiam pretium mollis fermentum. Morbi felis sapien,
+              varius eu malesuada ut,
+              aliquam ut augue. Sed condimentum dictum felis eget convallis.
             </Typography>
             <Typography paragraph>
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-              heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-              browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-              and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-              pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-              saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-            </Typography>
-            <Typography paragraph>
-              Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-              without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-              medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-              again without stirring, until mussels have opened and rice is just tender, 5 to 7
-              minutes more. (Discard any mussels that don’t open.)
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id vulputate lacus.
+              Nam dignissim placerat ante. Proin et enim vel mi maximus tincidunt.
+              In tincidunt sit amet turpis a gravida. Aenean vehicula id nisl faucibus pharetra.
+              Pellentesque porta sodales eros, tincidunt ultricies est faucibus eget.
+              Nulla et lacus nulla.
+              Nullam non euismod dolor. Etiam pretium mollis fermentum. Morbi felis sapien,
+              varius eu malesuada ut,
+              aliquam ut augue. Sed condimentum dictum felis eget convallis.
             </Typography>
             <Typography>
               Set aside off of the heat to let rest for 10 minutes, and then serve.
