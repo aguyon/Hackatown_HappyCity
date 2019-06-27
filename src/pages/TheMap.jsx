@@ -3,6 +3,7 @@ import Map from '../components/Map/index';
 import MapMenu from '../components/MapMenu/MapMenu';
 import ProfilButton from '../components/ProfilButton/ProfilButton';
 import BurgerButton from '../components/BurgerButton/BurgerButton';
+import SearchBar from '../components/Map/search';
 import FilterButton from '../components/FilterButton/FilterButton';
 import withContext from '../components/Context/withContext';
 
@@ -23,6 +24,7 @@ class TheMap extends Component {
               null
             ) : <ProfilButton />
           }
+          <SearchBar />
           <FilterButton />
         </div>
         <div>
