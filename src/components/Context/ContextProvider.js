@@ -1,11 +1,10 @@
 /* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
-// import axios from 'axios';
-
+import axios from 'axios';
 
 import constants from '../Map/const';
 
-const { issuesIcons, userIcon } = constants();
+const { issuesIcons, leafletIcon } = constants();
 
 export const Context = React.createContext();
 
@@ -18,19 +17,19 @@ class ContextProvider extends Component {
         {
           type: 'Espaces verts',
           position: [46.227638, 2.213749],
-          icon: userIcon,
+          icon: leafletIcon(issuesIcons[0]),
           text: 'je suis un marqueur sur une map, super',
         },
         {
           type: 'Espaces verts',
           position: [46.223678, 2.213749],
-          icon: userIcon,
+          icon: leafletIcon(issuesIcons[0]),
           text: 'je suis un marqueur sur une map, super',
         },
         {
           type: 'Espaces verts',
           position: [46.227838, 2.213769],
-          icon: userIcon,
+          icon: leafletIcon(issuesIcons[0]),
           text: 'je suis un marqueur sur une map, super',
         },
       ],
@@ -53,20 +52,25 @@ class ContextProvider extends Component {
     };
   }
 
+  componentWillMount() {
+    axios.get('http://134.209.194.234/api/issues')
+      .then(res => console.log(res.data['hydra:member']));
+  }
+
   addMarker = (e) => {
-    console.log(e);
-    const { issues } = this.state;
-    issues.push({
-      type: e.type,
-      icon: e.icon,
-      position: e.latlng,
-      text: 'je suis un marqueur sur une map, génial!',
-    });
-    this.setState({ issues });
+    const { issues, selectedIcon } = this.state;
+    if (selectedIcon) {
+      issues.push({
+        type: e.type,
+        icon: leafletIcon(selectedIcon.icon),
+        position: e.latlng,
+        text: 'je suis un marqueur sur une map, génial!',
+      });
+      this.setState({ issues });
+    }
   }
 
   selectIcon = (icon) => {
-    console.log(icon);
     this.setState({ selectedIcon: icon });
   }
 
