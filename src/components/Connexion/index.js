@@ -10,7 +10,6 @@ class Connexion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: '',
       username: '',
       password: '',
       redirect: false,
@@ -21,8 +20,8 @@ class Connexion extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { id, username, password } = this.state;
-    axios.get(`http://134.209.194.234/api/users/${id}`).then((res) => {
+    const { username, password } = this.state;
+    axios.get(`http://134.209.194.234/api/users/${username}`).then((res) => {
       console.log(res.data);
       if (
         res.data.username === username
@@ -88,7 +87,7 @@ class Connexion extends Component {
               value="Submit"
               className="HappyButton"
             >
-              Login
+              <Link to="/map">Login</Link>
             </Button>
           </FormGroup>
           <FormGroup>

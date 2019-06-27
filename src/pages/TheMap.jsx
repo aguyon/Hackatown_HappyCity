@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Map from '../components/Map/index';
-import ProfilButton from '../components/ProfilButton';
-import BurgerButton from '../components/BurgerButton';
+import ProfilButton from '../components/ProfilButton/ProfilButton';
+import BurgerButton from '../components/BurgerButton/BurgerButton';
 
 class TheMap extends Component {
   constructor(props) {
