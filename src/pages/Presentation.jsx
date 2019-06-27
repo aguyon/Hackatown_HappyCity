@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import '../App.css';
 import Demo from './demo';
+import Icon from '../assets/images/HappyCityIcon.png';
 // import ProfilButton from '../components/ProfilButton';
 
 
@@ -16,7 +17,7 @@ class Presentation extends Component {
     return (
       <div>
         <div className="logoBox">
-        logo
+          <img src={Icon} alt="Icon" className="Icon" />
         </div>
         <Button variant="contained" color="primary" className="HappyButton">
           <Link to="/map">

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import jaimemaville from '../assets/images/jaimemaville.png';
+import logo from '../assets/images/HappyCityLogo.png';
 import '../App.css';
 
 
@@ -15,7 +15,7 @@ class Demo extends Component {
         <div className="demo">
           tototo
         </div>
-        <img src={jaimemaville} alt="j'aime ma ville" className="imgVille" />
+        <img src={logo} alt="logo" className="logo" />
       </div>
     );
   }
