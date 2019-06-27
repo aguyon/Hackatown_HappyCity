@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
+import BurgerButton from '../components/BurgerButton';
 
 class Profil extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
+
   render() {
-    return (  
+    return (
       <div>
-        Coucou
+        <div>
+          <BurgerButton />
+        </div>
+        <div>
+          Mon profil
+        </div>
       </div>
     );
   }

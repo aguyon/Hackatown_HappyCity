@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
-import Grid from '@material-ui/core/Grid';
-import RecipeReviewCard from '../components/Actucards';
+import ProfilButton from '../components/ProfilButton';
+import BurgerButton from '../components/BurgerButton';
 
 class Actualite extends Component {
   constructor(props) {
@@ -11,37 +10,14 @@ class Actualite extends Component {
 
   render() {
     return (
-      <div className="actupage">
-        <Grid
-          item
-          xs={12}
-          container
-          direction="row"
-          justify="space-around"
-          alignItems="center"
-        >
-          <DeleteRoundedIcon />
-          <DeleteRoundedIcon />
-        </Grid>
-        <h4>XX nouvelles solutions depuis votre dernière connexion</h4>
-        <Grid
-          item
-          xs={12}
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-        >
-          <RecipeReviewCard />
-          <RecipeReviewCard />
-          <RecipeReviewCard />
-          <RecipeReviewCard />
-          <RecipeReviewCard />
-          <RecipeReviewCard />
-          <RecipeReviewCard />
-          <RecipeReviewCard />
-          <RecipeReviewCard />
-        </Grid>
+      <div>
+        <div>
+          <BurgerButton />
+          <ProfilButton />
+        </div>
+        <div>
+          Actualités
+        </div>
       </div>
     );
   }
