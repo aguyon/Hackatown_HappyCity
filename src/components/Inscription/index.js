@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import './style.css';
 import axios from 'axios';
 import {
-  Button, Form, FormGroup, Label, Input,
+  Button, Form, FormGroup, Input,
 } from 'reactstrap';
 import Modal from 'react-bootstrap/Modal';
-
-import AccountBox from '@material-ui/icons/AccountBox';
-import Email from '@material-ui/icons/Email';
-import Lock from '@material-ui/icons/Lock';
 
 class Inscription extends Component {
   constructor(props) {
@@ -85,7 +81,7 @@ class Inscription extends Component {
       show,
     } = this.state;
     return (
-      <div className="form_wrapper">
+      <div>
         <div className="form_container">
           <div className="title">
             <h2>Register</h2>
@@ -151,16 +147,14 @@ class Inscription extends Component {
                 placeholder="Confirm Password"
               />
             </FormGroup>
-            <FormGroup>
-              <Button
-                type="submit"
-                value="Submit"
-                className="Button"
-                disabled={!this.validateForm()}
-              >
-                Register
-              </Button>
-            </FormGroup>
+            <Button
+              type="submit"
+              value="Submit"
+              className="HappyButton"
+              disabled={!this.validateForm()}
+            >
+              Register
+            </Button>
           </Form>
           <Modal id="modalAlerte" show={show} onHide={this.handleClose}>
             <Modal.Header closeButton />

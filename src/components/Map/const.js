@@ -1,8 +1,26 @@
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import L from 'leaflet';
 
 import uIcon from './assets/location.png';
 
+function importAll(r) {
+  return r.keys().map(r);
+}
+
+
 export default () => ({
+
+  leafletIcon: icon => L.divIcon({
+    className: 'custom-icon',
+    iconAnchor: [30, 30],
+    html: ReactDOMServer.renderToString(
+      <img className="HappyIcon" src={icon} alt="" />,
+    ),
+  }),
+
+  issuesIcons: importAll(require.context('../../assets/icons/issues', false, /\.(png)$/)),
+
   userIcon: L.icon({
     iconUrl: uIcon,
     iconSize: [50, 50],

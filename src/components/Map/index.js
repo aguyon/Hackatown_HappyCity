@@ -12,11 +12,13 @@ import {
   // CircleMarker,
   // Tooltip,
 } from 'react-leaflet';
+import withContext from '../Context/withContext';
+import LocateButton from './locateButton';
 import constants from './const';
 
-import LocateButton from './locateButton';
-
 const { userIcon } = constants();
+
+// A virer quand on aura des icônes custom
 
 // eslint-disable-next-line no-underscore-dangle
 delete L.Icon.Default.prototype._getIconUrl;
@@ -33,7 +35,6 @@ class Map extends Component {
     super(props);
     this.mapRef = React.createRef();
     this.state = {
-      markers: [[46.227638, 2.213749]],
       location: {
         lat: 46.227638,
         lng: 2.213749,
@@ -61,12 +62,6 @@ class Map extends Component {
       });
   }
 
-  addMarker = (e) => {
-    const { markers } = this.state;
-    markers.push(e.latlng);
-    this.setState({ markers });
-  }
-
   getToMyPosition = () => {
     const { location, zoom } = this.state;
     const map = this.mapRef.current.leafletElement;
@@ -81,8 +76,9 @@ class Map extends Component {
 
   render() {
     // const { filters } = this.props;
+    const { addMarker, issues } = this.props;
     const {
-      location, markers,
+      location,
     } = this.state;
 
     return (
@@ -93,13 +89,13 @@ class Map extends Component {
         zoom={16}
         maxZoom={18}
         minZoom={16}
-        onClick={this.addMarker}
+        onClick={addMarker}
         // onMoveEnd={this.onMove}
         ref={this.mapRef}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
-          url="http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png"
+          url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png"
         />
 
         <Marker
@@ -107,22 +103,25 @@ class Map extends Component {
           position={location}
         />
         {
-          markers.map((marker, i) => (
-            <Marker key={`marker-${i + 1}`} position={marker}>
+          issues.map((issue, i) => (
+            <Marker
+              icon={issue.icon}
+              key={`issue-${i + 1}`}
+              position={issue.position}
+            >
               <Popup>
                 <span>
                   {
-                    'Je suis un marqueur sur une carte et c\'est cool'
+                    issue.text
                   }
                 </span>
               </Popup>
             </Marker>
           ))
         }
-
         <LocateButton getToMyPosition={this.getToMyPosition} />
         <ScaleControl
-          position="bottomright"
+          className="HappyScaleControl"
           imperial={false}
         />
       </LeafletMap>
@@ -130,4 +129,4 @@ class Map extends Component {
   }
 }
 
-export default Map;
+export default withContext(Map);
