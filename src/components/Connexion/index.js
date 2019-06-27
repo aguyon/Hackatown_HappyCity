@@ -31,6 +31,7 @@ class Connexion extends Component {
       ) {
         isLog();
         getUserInfo(res.data['hydra:member'][0]);
+        console.log(res.data['hydra:member'][0]);
         this.setState({ redirect: true });
       } else {
         this.setState({ errmsg: 'Username or password invalid' });
