@@ -7,3 +7,15 @@
   bottom: 0px;
   left: 0px;
 }
+.custom-icon {
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  border: none;
+  position: relative;
+}
+
+.HappyIcon {
+  width: 60px;
+  height: 60px;
+}

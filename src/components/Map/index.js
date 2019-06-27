@@ -105,7 +105,7 @@ class Map extends Component {
         {
           issues.map((issue, i) => (
             <Marker
-              // icon={marker.icon}
+              icon={issue.icon}
               key={`issue-${i + 1}`}
               position={issue.position}
             >
