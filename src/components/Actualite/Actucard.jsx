@@ -8,7 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 import clsx from 'clsx';
 import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -46,6 +45,7 @@ export default function Actucard({ solution }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [hided, setHided] = React.useState(false);
+  const [count, setCount] = React.useState(0);
 
   function handleExpandClick() {
     setExpanded(!expanded);
@@ -72,11 +72,11 @@ export default function Actucard({ solution }) {
         </CardContent>
         <CardActions disableSpacing>
           <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
+            <FavoriteIcon onClick={() => setCount(count + 1)} />
           </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton>
+          <div>
+            {count}
+          </div>
           <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
