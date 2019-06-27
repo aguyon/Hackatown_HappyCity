@@ -2,6 +2,11 @@
   height: 90vh !important;
 }
 
+.HappyScaleControl {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+}
 .custom-icon {
   width: 60px;
   height: 60px;

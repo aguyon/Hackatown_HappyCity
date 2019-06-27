@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BurgerButton from '../components/BurgerButton';
+import BurgerButton from '../components/BurgerButton/BurgerButton';
 
 class Profil extends Component {
   constructor(props) {

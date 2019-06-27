@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import ProfilButton from '../components/ProfilButton';
-import BurgerButton from '../components/BurgerButton';
 import Presentation from './Presentation';
 import '../App.css';
+import ProfilButton from '../components/ProfilButton/ProfilButton';
+import BurgerButton from '../components/BurgerButton/BurgerButton';
 
 class Home extends Component {
   constructor(props) {

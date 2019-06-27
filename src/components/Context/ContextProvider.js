@@ -47,6 +47,32 @@ class ContextProvider extends Component {
           icon: issuesIcons[2],
         },
       ],
+      actucards: [
+        {
+          id: 50,
+          icon: issuesIcons[0],
+          title: 'The title',
+          description: 'Le maire met son message ici',
+          score: 485,
+          status: 'En cours',
+        },
+        {
+          id: 48,
+          icon: issuesIcons[1],
+          title: 'The title 1',
+          description: 'Le maire met son message ici 1',
+          score: 398,
+          status: 'Terminé',
+        },
+        {
+          id: 35,
+          icon: issuesIcons[2],
+          title: 'The title 2',
+          description: 'Le maire met son message ici 2',
+          score: 152,
+          status: 'Non résolu',
+        },
+      ],
       addMarker: this.addMarker,
       selectIcon: this.selectIcon,
     };
