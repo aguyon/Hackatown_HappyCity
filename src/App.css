@@ -2,11 +2,11 @@
   text-align: center;
 }
 
-a {
+.vert {
   color: #00FF88;
   font-weight: bold;
 }
-a:hover {
+.vert:hover {
   color: #00A54E;
 }
 
