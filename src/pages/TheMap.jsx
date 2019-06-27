@@ -3,6 +3,8 @@ import Map from '../components/Map/index';
 import MapMenu from '../components/MapMenu/MapMenu';
 import ProfilButton from '../components/ProfilButton/ProfilButton';
 import BurgerButton from '../components/BurgerButton/BurgerButton';
+import SearchBar from '../components/Map/search';
+
 
 class TheMap extends Component {
   constructor(props) {
@@ -15,6 +17,7 @@ class TheMap extends Component {
       <div>
         <div>
           <BurgerButton />
+          <SearchBar />
           <ProfilButton />
         </div>
         <div>
