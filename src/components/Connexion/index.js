@@ -22,7 +22,7 @@ class Connexion extends Component {
     event.preventDefault();
 
     const { username, password } = this.state;
-    const { isLog } = this.props;
+    const { isLog, getUserInfo } = this.props;
     axios.get(`http://134.209.194.234/api/users?username=${username}`).then((res) => {
       if (
         res.data['hydra:totalItems'] !== 0
@@ -30,6 +30,7 @@ class Connexion extends Component {
         && res.data['hydra:member'][0].password === password
       ) {
         isLog();
+        getUserInfo(res.data['hydra:member'][0]);
         this.setState({ redirect: true });
       } else {
         this.setState({ errmsg: 'Username or password invalid' });
@@ -88,16 +89,17 @@ class Connexion extends Component {
               disabled={!this.validateForm()}
               type="submit"
               value="Submit"
-              className="HappyButton"
+              className="HappyButton btnLogin"
             >
-              {redirect ? <Link to="/map">Login</Link> : null}
+              Login
+              {redirect ? <Link to="/map" /> : null}
             </Button>
           </FormGroup>
           <FormGroup>
-            <Button block type="submit" value="Submit" className="HappyButton">
+            <Button block type="submit" value="Submit" className="HappyButton btnRegister">
               <Link to="/inscription">Register</Link>
             </Button>
-            {errmsg}
+            <div className="errmsg">{errmsg}</div>
           </FormGroup>
         </Form>
       </div>
