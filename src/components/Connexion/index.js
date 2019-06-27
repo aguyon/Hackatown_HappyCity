@@ -21,11 +21,10 @@ class Connexion extends Component {
     event.preventDefault();
 
     const { username, password } = this.state;
-    axios.get(`http://134.209.194.234/api/users/${username}`).then((res) => {
-      console.log(res.data);
+    axios.get(`http://134.209.194.234/api/users?username=${username}`).then((res) => {
       if (
-        res.data.username === username
-        && res.data.password === password
+        res.data['hydra:member'][0].username === username
+        && res.data['hydra:member'][0].password === password
       ) {
         this.setState({ redirect: true });
       } else {
@@ -87,7 +86,7 @@ class Connexion extends Component {
               value="Submit"
               className="HappyButton"
             >
-              <Link to="/map">Login</Link>
+              {redirect ? <Link to="/map">Login</Link> : null}
             </Button>
           </FormGroup>
           <FormGroup>
