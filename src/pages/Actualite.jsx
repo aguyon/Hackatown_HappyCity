@@ -12,11 +12,9 @@ function Actualite({ solutions }) {
         <BurgerButton />
         <ProfilButton />
       </div>
-      <div className="HappyTitle">
-        Actualités
-      </div>
+      <h2>Actualités</h2>
       <div className="nbissues">
-        Nombre d issues ont étaient résolus par la mairie
+        Dernières solutions proposées
       </div>
       <Grid
         item

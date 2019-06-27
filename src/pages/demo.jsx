@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../assets/images/HappyCityLogo.png';
 import '../App.css';
 
 
@@ -13,9 +12,12 @@ class Demo extends Component {
     return (
       <div>
         <div className="demo">
-          tototo
+          <p>
+          Make your city happy !You want to be an actor of your city’s decision ?
+            <hr />
+          Share your ideas, show and report problems you see around !
+          </p>
         </div>
-        <img src={logo} alt="logo" className="logo" />
       </div>
     );
   }

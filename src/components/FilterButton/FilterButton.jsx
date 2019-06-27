@@ -1,12 +1,11 @@
 import React from 'react';
-import './BurgerButton.css';
+import './FilterButton.css';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import logo from '../../assets/images/HappyCityLogo.png';
 
 const useStyles = makeStyles({
   list: {
@@ -17,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-const BurgerButton = () => {
+const FilterButton = () => {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -52,7 +51,6 @@ const BurgerButton = () => {
         </ListItem>
       </List>
       <Divider />
-      <img src={logo} alt="Logo" className="MenuLogo" />
     </div>
   );
 
@@ -63,7 +61,7 @@ const BurgerButton = () => {
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={toggleDrawer('left', true)}
-        className="BurgerButton"
+        className="FilterButton"
       />
 
       <SwipeableDrawer
@@ -77,4 +75,4 @@ const BurgerButton = () => {
   );
 };
 
-export default BurgerButton;
+export default FilterButton;

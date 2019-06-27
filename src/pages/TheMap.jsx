@@ -4,7 +4,7 @@ import MapMenu from '../components/MapMenu/MapMenu';
 import ProfilButton from '../components/ProfilButton/ProfilButton';
 import BurgerButton from '../components/BurgerButton/BurgerButton';
 import SearchBar from '../components/Map/search';
-
+import FilterButton from '../components/FilterButton/FilterButton';
 
 class TheMap extends Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class TheMap extends Component {
           <BurgerButton />
           <SearchBar />
           <ProfilButton />
+          <FilterButton />
         </div>
         <div>
           <Map />
