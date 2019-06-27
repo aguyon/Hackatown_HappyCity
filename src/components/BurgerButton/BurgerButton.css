@@ -10,3 +10,10 @@
   height: 60px;
   z-index: 1000;
 }
+
+.MenuLogo {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  height: 60px;
+}
