@@ -2,10 +2,13 @@
     margin-top: 120px;
 }
 
-.problemes {
-    margin-left: 20px;
+.info {
+    font-weight: 500;
 }
 
-.email {
-    margin-left: 20px;
+.infoUser {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 25px;
 }
