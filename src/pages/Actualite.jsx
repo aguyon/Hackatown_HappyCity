@@ -1,8 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import withContext from '../components/Context/withContext';
-import ProfilButton from '../components/ProfilButton';
-import BurgerButton from '../components/BurgerButton';
+import ProfilButton from '../components/ProfilButton/ProfilButton';
+import BurgerButton from '../components/BurgerButton/BurgerButton';
 import Actucard from '../components/Actualite/Actucard';
 
 function Actualite({ actucards }) {
