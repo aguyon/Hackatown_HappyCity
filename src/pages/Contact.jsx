@@ -18,6 +18,9 @@ class Contact extends Component {
         <div>
           Contact
         </div>
+        <div>
+          <h4>Un problème ? Contactez-nous !</h4>
+        </div>
       </div>
     );
   }
