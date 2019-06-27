@@ -6,6 +6,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
+import logo from '../../assets/images/HappyCityLogo.png';
 
 const useStyles = makeStyles({
   list: {
@@ -51,6 +52,7 @@ const BurgerButton = () => {
         </ListItem>
       </List>
       <Divider />
+      <img src={logo} alt="Logo" className="MenuLogo" />
     </div>
   );
 
