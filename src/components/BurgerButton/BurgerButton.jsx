@@ -49,6 +49,9 @@ const BurgerButton = () => {
         <ListItem button>
           <Link to="/contact" className="Vert">Contact</Link>
         </ListItem>
+        <ListItem button>
+          <Link to="/admin" className="Vert">Admin</Link>
+        </ListItem>
       </List>
       <Divider />
     </div>
