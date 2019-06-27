@@ -75,6 +75,8 @@ class ContextProvider extends Component {
       ],
       addMarker: this.addMarker,
       selectIcon: this.selectIcon,
+      isLoggedIn: false,
+      isLog: this.isLog,
     };
   }
 
@@ -98,6 +100,10 @@ class ContextProvider extends Component {
 
   selectIcon = (icon) => {
     this.setState({ selectedIcon: icon });
+  }
+
+  isLog = () => {
+    this.setState({ isLoggedIn: true });
   }
 
   render() {
