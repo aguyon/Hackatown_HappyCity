@@ -23,11 +23,16 @@ class Admin extends Component {
   }
 
   render() {
+    const { userInfo } = this.props;
     return (
       <div>
         <div>
           <BurgerButton />
-          <ProfilButton />
+          {
+            userInfo && userInfo.role === 'admin' ? (
+              null
+            ) : <ProfilButton />
+          }
         </div>
         <div>
           Admin

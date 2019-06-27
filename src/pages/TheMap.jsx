@@ -4,6 +4,7 @@ import MapMenu from '../components/MapMenu/MapMenu';
 import ProfilButton from '../components/ProfilButton/ProfilButton';
 import BurgerButton from '../components/BurgerButton/BurgerButton';
 import FilterButton from '../components/FilterButton/FilterButton';
+import withContext from '../components/Context/withContext';
 
 class TheMap extends Component {
   constructor(props) {
@@ -12,11 +13,16 @@ class TheMap extends Component {
   }
 
   render() {
+    const { userInfo } = this.props;
     return (
       <div>
         <div>
           <BurgerButton />
-          <ProfilButton />
+          {
+            userInfo && userInfo.role === 'admin' ? (
+              null
+            ) : <ProfilButton />
+          }
           <FilterButton />
         </div>
         <div>
@@ -28,4 +34,4 @@ class TheMap extends Component {
   }
 }
 
-export default TheMap;
+export default withContext(TheMap);
