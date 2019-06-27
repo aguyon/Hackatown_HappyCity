@@ -17,42 +17,9 @@ class Inscription extends Component {
       password: '',
       confpassword: '',
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  handleOpen = () => {
-    this.setState({ show: true });
-  };
-
-  handleClose = () => {
-    this.setState({ show: false });
-  };
-
-  handleInputChange = (event) => {
-    const { target } = event;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const { name } = target;
-
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const {
-      firstname, lastname, username, email, password,
-    } = this.state;
-    axios.post('http://134.209.194.234/api/users', {
-      firstname,
-      lastname,
-      username,
-      email,
-      password,
-    });
-    this.setState({
-      show: true,
-    });
-  };
 
   validateForm = () => {
     const {
@@ -72,6 +39,39 @@ class Inscription extends Component {
       && password === confpassword
     );
   };
+
+  handleInputChange(event) {
+    const { target } = event;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const { name } = target;
+
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  handleSubmit(event) {
+    console.log('test');
+    event.preventDefault();
+    const {
+      firstname, lastname, username, email, password,
+    } = this.state;
+    console.log({
+      firstname,
+      lastname,
+      username,
+      email,
+      password,
+    });
+    axios.post('http://134.209.194.234/api/users', {
+      firstname,
+      lastname,
+      username,
+      email,
+      password,
+    }).then(res => console.log(res))
+      .catch(e => console.log(e));
+  }
 
   render() {
     const {
@@ -151,11 +151,16 @@ class Inscription extends Component {
           <Button
             type="submit"
             value="Submit"
-            className="HappyButton"
-            disabled={!this.validateForm()}
-            onClick={this.handleOpen}
+            className="HappyButton btnRegistrer"
           >
-            <Link to="/connexion">Register</Link>
+            Register
+          </Button>
+          <Button
+            type="submit"
+            value="Submit"
+            className="HappyButton btnRegister"
+          >
+            <Link to="/connexion">Login</Link>
           </Button>
         </Form>
       </div>
