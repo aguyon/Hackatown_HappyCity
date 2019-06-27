@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ProfilButton from '../components/ProfilButton';
+import BurgerButton from '../components/BurgerButton';
 
 class Home extends Component {
   constructor(props) {
@@ -9,7 +11,13 @@ class Home extends Component {
   render() {
     return (
       <div>
-        Coucou
+        <div>
+          <BurgerButton />
+          <ProfilButton />
+        </div>
+        <div>
+          Coucou
+        </div>
       </div>
     );
   }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Map from '../components/Map';
 import MapMenu from '../components/MapMenu';
+import ProfilButton from '../components/ProfilButton';
+import BurgerButton from '../components/BurgerButton';
 
 class TheMap extends Component {
   constructor(props) {
@@ -11,8 +13,14 @@ class TheMap extends Component {
   render() {
     return (
       <div>
-        <Map />
-        <MapMenu />
+        <div>
+          <BurgerButton />
+          <ProfilButton />
+        </div>
+        <div>
+          <Map />
+          <MapMenu />
+        </div>
       </div>
     );
   }

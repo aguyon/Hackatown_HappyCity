@@ -23,7 +23,7 @@ function importAll(r) {
 
 export default () => ({
 
-  menuIcons: importAll(require.context('../../assets/MapMenu/', false, /\.(png)$/)),
+  issuesIcons: importAll(require.context('../../assets/icons/issues', false, /\.(png)$/)),
 
   userIcon: L.icon({
     iconUrl: uIcon,

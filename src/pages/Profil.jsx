@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BurgerButton from '../components/BurgerButton';
 
 class Profil extends Component {
   constructor(props) {
@@ -9,7 +10,12 @@ class Profil extends Component {
   render() {
     return (
       <div>
-        Coucou
+        <div>
+          <BurgerButton />
+        </div>
+        <div>
+          Mon profil
+        </div>
       </div>
     );
   }

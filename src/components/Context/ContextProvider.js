@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 
 import constants from '../Map/const';
 
-const { menuIcons, userIcon } = constants();
+const { issuesIcons, userIcon } = constants();
 
 export const Context = React.createContext();
 
@@ -37,15 +37,15 @@ class ContextProvider extends Component {
       issuesList: [
         {
           type: 'Espaces verts',
-          icon: menuIcons[0],
+          icon: issuesIcons[0],
         },
         {
           type: 'Poubelles pas fraîches',
-          icon: menuIcons[1],
+          icon: issuesIcons[1],
         },
         {
           type: 'Balek',
-          icon: menuIcons[2],
+          icon: issuesIcons[2],
         },
       ],
       addMarker: this.addMarker,
@@ -55,14 +55,14 @@ class ContextProvider extends Component {
 
   addMarker = (e) => {
     console.log(e);
-    const { markers } = this.state;
-    markers.push({
+    const { issues } = this.state;
+    issues.push({
       type: e.type,
       icon: e.icon,
       position: e.latlng,
       text: 'je suis un marqueur sur une map, génial!',
     });
-    this.setState({ markers });
+    this.setState({ issues });
   }
 
   selectIcon = (icon) => {
