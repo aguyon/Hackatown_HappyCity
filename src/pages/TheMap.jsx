@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Map from '../components/Map/index';
+import Map from '../components/Map';
+import MapMenu from '../components/MapMenu';
 import ProfilButton from '../components/ProfilButton';
 import BurgerButton from '../components/BurgerButton';
 
@@ -18,6 +19,7 @@ class TheMap extends Component {
         </div>
         <div>
           <Map />
+          <MapMenu />
         </div>
       </div>
     );
