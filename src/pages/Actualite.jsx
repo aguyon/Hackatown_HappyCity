@@ -6,27 +6,32 @@ import RecipeReviewCard from '../components/Actucards';
 class Actualite extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
+
   render() {
     return (
       <div className="actupage">
         <Grid
-          item xs={12}
+          item
+          xs={12}
           container
           direction="row"
           justify="space-around"
-          alignItems="center">
+          alignItems="center"
+        >
           <DeleteRoundedIcon />
           <DeleteRoundedIcon />
         </Grid>
         <h4>XX nouvelles solutions depuis votre dernière connexion</h4>
         <Grid
-          item xs={12}
+          item
+          xs={12}
           container
           direction="row"
           justify="center"
-          alignItems="center">
+          alignItems="center"
+        >
           <RecipeReviewCard />
           <RecipeReviewCard />
           <RecipeReviewCard />
