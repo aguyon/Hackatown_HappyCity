@@ -17,20 +17,8 @@ class ContextProvider extends Component {
       placingIcon: false,
       issues: [],
       marker: null,
-      issuesList: [
-        {
-          type: 'Espaces verts',
-          icon: issuesIcons[0],
-        },
-        {
-          type: 'Poubelles pas fraîches',
-          icon: issuesIcons[1],
-        },
-        {
-          type: 'Balek',
-          icon: issuesIcons[2],
-        },
-      ],
+      issuesList: [],
+      issuesReport: [],
       actucards: [
         {
           id: 50,
@@ -71,9 +59,10 @@ class ContextProvider extends Component {
 
   componentWillMount() {
     axios.get('http://134.209.194.234/api/types')
-      .then(res => this.setState({ issuesList: res.data['hydra:member'] }));
-    // axios.get('http://134.209.194.234/api/issues')
-    //   .then(res => console.log(res));
+      .then((res) => {
+        this.setState({ issuesList: res.data['hydra:member'] });
+      });
+
     axios.get('http://134.209.194.234/api/solutions')
       .then(res => this.setState({
         solutions: res.data['hydra:member'],
