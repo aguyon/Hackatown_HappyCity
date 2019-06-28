@@ -102,16 +102,22 @@ function MapMenu({
                 <button className="HappyButton" type="button" onClick={confirmButton('bottom', true)}>Confirm</button>
               </div>
             )
-            : issuesList.map((issue, i) => (
-              <div key={`issue-${i + 1}`}>
-                <button type="button" onClick={() => selectIcon(issue.name)}>
-                  <img
-                    src={`./assets/${issue.name}.png`}
-                    alt={issue.name}
-                  />
-                </button>
+            : (
+              <div className="FirstIcons">
+                {issuesList
+                  .filter(issue => issue.name === 'Transport' || issue.name === 'Bike' || issue.name === 'Nature' || issue.name === 'Trash')
+                  .map((issue, i) => (
+                    <div key={`issue-${i + 1}`}>
+                      <button type="button" onClick={() => selectIcon(issue.name)}>
+                        <img
+                          src={`./assets/${issue.name}.png`}
+                          alt={issue.name}
+                        />
+                      </button>
+                    </div>
+                  ))}
               </div>
-            ))
+            )
         }
       </div>
       <SwipeableDrawer
