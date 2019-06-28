@@ -58,7 +58,7 @@ function MapMenu({
         !confirmed
           ? (
             <div className="Repport">
-              <h1>Repport a problem</h1>
+              <h1>Report a problem</h1>
               {issuesList
                 .map((issue, i) => (
                   <div key={`issue-${i + 1}`} className="IssuesList">
