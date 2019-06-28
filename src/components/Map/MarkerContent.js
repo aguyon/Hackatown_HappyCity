@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import withContext from '../Context/withContext';
+import './MarkerContent.css';
+import PlusIcon from '../../assets/icons/plus-orange.png';
 
 class MarkerContent extends Component {
   constructor(props) {
@@ -33,11 +35,17 @@ class MarkerContent extends Component {
         {
           !voted
             ? (
-              <div>
-                <button type="button" onClick={() => this.like()}>Thumb up</button>
-                <span>{issue.thumbUp}</span>
-                <button type="button" onClick={() => this.dislike()}>Thumb down</button>
-                <span>{issue.thumbDown}</span>
+              <div className="VotePlusContainer">
+                <p className="VotePlus">
+                  <span className="VoteNumber">{issue.thumbUp}</span>
+                  &nbsp;&nbsp;votes
+                </p>
+                <div className="VotePlus">
+                  <button type="button" onClick={() => this.like()} className="VoteButton">
+                    <img src={PlusIcon} alt="" className="PlusIcon" />
+                    <p>&nbsp;&nbsp;vote</p>
+                  </button>
+                </div>
               </div>
             )
             : null

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Inscription/style.css';
+import './IssueForm.css';
 import axios from 'axios';
 import {
   Button, Form, FormGroup, Input,
@@ -27,8 +28,8 @@ class IssueForm extends Component {
   };
 
   getTypeIssue = (issuesList, selectedIcon) => {
-    console.log('coucouc' + issuesList);
-    console.log('salut' + selectedIcon)
+    console.log(`coucouc${issuesList}`);
+    console.log(`salut${selectedIcon}`);
     for (let i = 0; i < issuesList.length; i += 1) {
       if (issuesList[i].name === selectedIcon) {
         return issuesList[i]['@id'];
@@ -42,7 +43,12 @@ class IssueForm extends Component {
     const {
       description, infos,
     } = this.state;
-    const { marker, userInfo, issuesList, selectedIcon } = this.props;
+    const {
+      marker,
+      userInfo,
+      issuesList,
+      selectedIcon,
+    } = this.props;
     const { lat } = marker.position;
     const { lng } = marker.position.lng;
     console.log(issuesList);
@@ -85,26 +91,26 @@ class IssueForm extends Component {
       infos,
     } = this.state;
     return (
-      <div className="form_container">
+      <div className="HappyForm">
         <div className="title">
           <h2>Submit new issue</h2>
         </div>
         <Form onSubmit={this.handleSubmit}>
-          <FormGroup>
+          <FormGroup className="HappyFormGroup">
             <Input
               name="description"
               type="description"
-              className="inputRegister"
+              className="HappyInput"
               checked={description}
               onChange={this.handleInputChange}
               placeholder="Description"
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="HappyFormGroup">
             <Input
               name="infos"
               type="infos"
-              className="inputRegister"
+              className="HappyInput"
               checked={infos}
               onChange={this.handleInputChange}
               placeholder="Additionnal infos"
