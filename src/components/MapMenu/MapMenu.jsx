@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 });
 
 function MapMenu({
-  issuesList, selectIcon, switchPlacingIcon, placingIcon, showingComments,
+  issuesList, selectIcon, switchPlacingIcon, placingIcon, showingComments, removeMarker,
 }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -28,6 +28,11 @@ function MapMenu({
     right: false,
   });
   const [confirmed, setConfirmed] = React.useState(false);
+
+  function resetMarker() {
+    removeMarker();
+    switchPlacingIcon(false);
+  }
 
   const toggleDrawer = (side, open) => (event) => {
     if (side === 'bottom' && open === false) {
@@ -98,7 +103,7 @@ function MapMenu({
           placingIcon
             ? (
               <div className="ConfirmCancelButtons">
-                <button className="PasHappyButton" type="button" onClick={() => switchPlacingIcon(false)}>Cancel</button>
+                <button className="PasHappyButton" type="button" onClick={() => resetMarker()}>Cancel</button>
                 <button className="HappyButton" type="button" onClick={confirmButton('bottom', true)}>Confirm</button>
               </div>
             )

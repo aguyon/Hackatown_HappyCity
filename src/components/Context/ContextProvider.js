@@ -34,6 +34,7 @@ class ContextProvider extends Component {
       showComments: this.showComments,
       showCommentsIssue: null,
       getIssues: this.getIssues,
+      removeMarker: this.removeMarker,
     };
   }
 
@@ -94,6 +95,10 @@ class ContextProvider extends Component {
       selectedIcon: null,
       placingIcon: bool,
     });
+  }
+
+  removeMarker = () => {
+    this.setState({ marker: null });
   }
 
   isLog = () => {
