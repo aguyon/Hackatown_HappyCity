@@ -55,7 +55,7 @@ class ContactForm extends Component {
     if (redirect) return <Redirect to="/map" />;
     return (
       <div className="wholeform">
-        <h2>Contacter</h2>
+        <h2>Nous contacter</h2>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Label>Ma question concerne</Label>

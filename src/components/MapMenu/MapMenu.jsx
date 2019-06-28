@@ -12,6 +12,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import withContext from '../Context/withContext';
 import './MapMenu.css';
 import IssueForm from '../IssueForm';
+import More from '../../assets/icons/more-orange-dark.png';
 
 const useStyles = makeStyles({
   list: {
@@ -97,14 +98,6 @@ function MapMenu({
                 ))}
               </List>
               <Divider />
-              <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                ))}
-              </List>
             </div>
           )
           : null
@@ -120,13 +113,13 @@ function MapMenu({
           {
             placingIcon
               ? (
-                <div>
+                <div className="ConfirmCancelButtons">
+                  <button className="PasHappyButton" type="button" onClick={() => switchPlacingIcon(false)}>Cancel</button>
                   <button className="HappyButton" type="button" onClick={confirmButton('bottom', true)}>Confirm</button>
-                  <button className="HappyButton" type="button" onClick={() => switchPlacingIcon(false)}>Cancel</button>
                 </div>
               )
               : issuesList.map((issue, i) => (
-                <div key={`issue-${i + 1}`}>
+                <div key={`issue-${i + 1}`} className="IssuesIcons">
                   <button type="button" onClick={() => selectIcon(issue)}><img src={issue.icon} alt="" /></button>
                 </div>
               ))

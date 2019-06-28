@@ -15,14 +15,6 @@ class Contact extends Component {
         <div>
           <BurgerButton />
           <ProfilButton />
-        </div>
-        <div>
-          Contact
-        </div>
-        <div>
-          <h4>Un problème ? Contactez-nous !</h4>
-        </div>
-        <div>
           <ContactForm />
         </div>
       </div>
