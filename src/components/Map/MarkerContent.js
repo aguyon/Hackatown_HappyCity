@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ListItem from '@material-ui/core/ListItem';
+import { Link } from 'react-router-dom';
 import withContext from '../Context/withContext';
 
 class MarkerContent extends Component {
@@ -17,6 +19,11 @@ class MarkerContent extends Component {
     this.setState({ voted: true });
   }
 
+  delete = () => {
+    const { issue } = this.props;
+    axios.delete(`http://134.209.194.234/api/issues/${issue.id}`);
+  }
+
   dislike = () => {
     const { issue } = this.props;
     console.log(issue);
@@ -25,7 +32,7 @@ class MarkerContent extends Component {
   }
 
   render() {
-    const { issue, showComments } = this.props;
+    const { issue, showComments, userInfo } = this.props;
     const { voted } = this.state;
     return (
       <div>
@@ -43,6 +50,13 @@ class MarkerContent extends Component {
             : null
         }
         <button type="button" onClick={() => showComments(true, issue)}>Comments</button>
+        {
+          userInfo && userInfo.role === 'admin' ? (
+            <button onClick={() => this.delete()} className="Vert" type="button">
+              Delete issue
+            </button>
+          ) : null
+        }
       </div>
     );
   }

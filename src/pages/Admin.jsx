@@ -38,7 +38,7 @@ class Admin extends Component {
         <div>
           <BurgerButton />
           {
-            userInfo && userInfo.role === 'admin' ? (
+            localStorage.getItem('user') ? (
               null
             ) : <ProfilButton />
           }

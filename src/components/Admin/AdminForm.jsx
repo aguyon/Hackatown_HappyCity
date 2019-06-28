@@ -58,7 +58,7 @@ class AdminForm extends Component {
         <h5>Add your solution to an issue</h5>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
-            <Label>Select an issue</Label>
+            <Label>Select an issue to solved</Label>
             <Input
               name="issu"
               type="select"
