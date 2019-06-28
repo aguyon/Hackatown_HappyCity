@@ -114,15 +114,17 @@ class IssueForm extends Component {
               placeholder="Additionnal infos"
             />
           </FormGroup>
-          <Button
-            type="submit"
-            value="Submit"
-            className="HappyButton"
-            disabled={!this.validateForm()}
-            onClick={<SuccessCheck />}
-          >
-            Post issue
-          </Button>
+          <div className="btnSend">
+            <Button
+              type="submit"
+              value="Submit"
+              className="HappyButton"
+              disabled={!this.validateForm()}
+              onClick={<SuccessCheck />}
+            >
+              Post issue
+            </Button>
+          </div>
         </Form>
       </div>
     );

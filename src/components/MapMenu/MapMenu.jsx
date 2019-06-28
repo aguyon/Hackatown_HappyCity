@@ -58,7 +58,7 @@ function MapMenu({
         !confirmed
           ? (
             <div className="Repport">
-              <h1>Repport a problem</h1>
+              <h1>Report a problem</h1>
               {issuesList
                 .map((issue, i) => (
                   <div key={`issue-${i + 1}`} className="IssuesList">
@@ -91,7 +91,7 @@ function MapMenu({
   );
 
   return (
-    <div>
+    <div className="menu_container">
       <Button className="HappyArrow" onClick={toggleDrawer('bottom', true)} />
       <div className="MapMenu">
         {
@@ -112,7 +112,7 @@ function MapMenu({
                 </button>
               </div>
             ))
-        }
+          }
       </div>
       <SwipeableDrawer
         anchor="bottom"
