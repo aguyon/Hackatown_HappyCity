@@ -9,8 +9,7 @@ class Profil extends React.Component {
   }
 
   render() {
-    const { userInfo, issuesReport } = this.props;
-    console.log(issuesReport);
+    const { userInfo } = this.props;
     return (
       <div>
         <h2 className="title">My Profil</h2>
