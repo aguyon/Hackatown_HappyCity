@@ -10,3 +10,11 @@
   height: 60px;
   z-index: 1000;
 }
+
+.FilterTitle {
+  margin-top: 24px;
+  margin-left: 12px;
+  margin-bottom: 24px;
+  font-size: 2em;
+  font-weight: bold;
+}
