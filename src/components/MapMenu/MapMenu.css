@@ -1,6 +1,7 @@
 .MapMenu {
   display: flex;
   flex-direction: row;
+  margin-top: -17px;
 }
 
 .MapMenu img {

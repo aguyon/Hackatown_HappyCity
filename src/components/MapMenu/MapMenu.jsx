@@ -79,7 +79,7 @@ function MapMenu({
   );
 
   return (
-    <div>
+    <div className="menu_container">
       <Button className="HappyArrow" onClick={toggleDrawer('bottom', true)} />
       <div className="MapMenu">
         {
@@ -100,7 +100,7 @@ function MapMenu({
                 </button>
               </div>
             ))
-        }
+          }
       </div>
       <SwipeableDrawer
         anchor="bottom"
