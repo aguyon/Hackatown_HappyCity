@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './Inscription/style.css';
+import './IssueForm.css';
 import axios from 'axios';
 import {
   Button, Form, FormGroup, Input,
 } from 'reactstrap';
 import withContext from './Context/withContext';
+import SuccessCheck from './SuccessCheck/SuccessCheck';
 
 class IssueForm extends Component {
   constructor(props) {
@@ -37,10 +39,10 @@ class IssueForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const {
-      description, infos,
+      description,
     } = this.state;
     const {
-      marker, userInfo, issuesList, selectedIcon,
+      marker, userInfo, issuesList, selectedIcon, getIssues,
     } = this.props;
     const lat = marker.position.lat;
     const lng = marker.position.lng;
@@ -54,6 +56,7 @@ class IssueForm extends Component {
       description,
     })
       .then(res => console.log(res))
+      .then(getIssues())
       .catch(e => console.log(e));
     // .then(res => axios.post('http://134.209.194.234/api/comments', {
     //   creator: '/api/users/12',
@@ -81,40 +84,42 @@ class IssueForm extends Component {
       infos,
     } = this.state;
     return (
-      <div className="form_container">
+      <div className="HappyForm">
         <div className="title">
           <h2>Submit new issue</h2>
         </div>
         <Form onSubmit={this.handleSubmit}>
-          <FormGroup>
+          <FormGroup className="HappyFormGroup">
             <Input
               name="description"
               type="description"
-              className="inputRegister"
+              className="HappyInput"
               checked={description}
               onChange={this.handleInputChange}
               placeholder="Description"
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="HappyFormGroup">
             <Input
               name="infos"
               type="infos"
-              className="inputRegister"
+              className="HappyInput"
               checked={infos}
               onChange={this.handleInputChange}
               placeholder="Additionnal infos"
             />
           </FormGroup>
-          <Button
-            type="submit"
-            value="Submit"
-            className="HappyButton"
-            disabled={!this.validateForm()}
-            onClick={this.handleOpen}
-          >
-            Post issue
-          </Button>
+          <div className="btnSend">
+            <Button
+              type="submit"
+              value="Submit"
+              className="HappyButton"
+              disabled={!this.validateForm()}
+              onClick={<SuccessCheck />}
+            >
+              Post issue
+            </Button>
+          </div>
         </Form>
       </div>
     );

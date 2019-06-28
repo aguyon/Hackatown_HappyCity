@@ -5,13 +5,13 @@ import ProfilButton from '../components/ProfilButton/ProfilButton';
 import BurgerButton from '../components/BurgerButton/BurgerButton';
 import Actucard from '../components/Actualite/Actucard';
 
-function Actualite({ solutions, userInfo }) {
+function Actualite({ solutions }) {
   return (
     <div>
       <div>
         <BurgerButton />
         {
-          userInfo && userInfo.role === 'admin' ? (
+          localStorage.getItem('user') ? (
             null
           ) : <ProfilButton />
         }
