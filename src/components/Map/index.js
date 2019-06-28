@@ -14,6 +14,9 @@ import withContext from '../Context/withContext';
 import LocateButton from './locateButton';
 import constants from './const';
 import SearchBar from './search';
+import MarkerContent from './MarkerContent';
+import Comments from '../Comments/Comments';
+
 
 const { userIcon } = constants();
 
@@ -62,8 +65,9 @@ class Map extends Component {
   // };
 
   render() {
-    // const { filters } = this.props;
-    const { addMarker, issues, marker } = this.props;
+    const {
+      addMarker, issues, marker, filters, showingComments,
+    } = this.props;
     const {
       location,
     } = this.state;
@@ -75,11 +79,16 @@ class Map extends Component {
         center={location}
         zoom={16}
         maxZoom={18}
-        minZoom={6}
+        minZoom={1}
         onClick={addMarker}
         // onMoveEnd={this.onMove}
         ref={this.mapRef}
       >
+        {
+          showingComments
+            ? <Comments />
+            : null
+        }
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
           url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png"
@@ -100,19 +109,19 @@ class Map extends Component {
         />
         {
           issues.map((issue, i) => (
-            <Marker
-              icon={issue.icon}
-              key={`issue-${i + 1}`}
-              position={issue.position}
-            >
-              <Popup>
-                <span>
-                  {
-                    issue.text
-                  }
-                </span>
-              </Popup>
-            </Marker>
+            filters[issue.type.name]
+              ? (
+                <Marker
+                  icon={issue.icon}
+                  key={`issue-${i + 1}`}
+                  position={issue.location}
+                >
+                  <Popup>
+                    <MarkerContent issue={issue} />
+                  </Popup>
+                </Marker>
+              )
+              : null
           ))
         }
         <LocateButton getToMyPosition={this.getToMyPosition} />
