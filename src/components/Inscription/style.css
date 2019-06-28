@@ -3,7 +3,7 @@
   margin-left: auto;
   margin-right: auto;
   width: 343px;
-  height: 464px;
+  height: 335px;
   background-color: #fff;
 }
 
@@ -20,4 +20,17 @@
 
 .btnRegistrer {
   margin-top: 20px;
+}
+
+.form-group {
+  text-align: center;
+}
+
+.btnSend {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.title {
+  text-align: center;
 }

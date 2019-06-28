@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.css';
 import withContext from '../Context/withContext';
-import axios from 'axios';
 
 class Profil extends React.Component {
   constructor(props) {
