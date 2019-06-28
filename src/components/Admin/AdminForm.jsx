@@ -55,10 +55,10 @@ class AdminForm extends Component {
     } = this.state;
     return (
       <div className="wholeform">
-        <h5>Add your solution</h5>
+        <h5>Add your solution to an issue</h5>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
-            <Label>Select</Label>
+            <Label>Select an issue</Label>
             <Input
               name="issu"
               type="select"

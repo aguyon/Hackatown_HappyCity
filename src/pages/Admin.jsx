@@ -75,6 +75,10 @@ class Admin extends Component {
             <Button size="small">More stats (coming soon)</Button>
           </CardActions>
         </Card>
+        <h3>
+          Dashboard
+        </h3>
+        <AdminForm />
       </div>
     );
   }
