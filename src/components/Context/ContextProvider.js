@@ -53,6 +53,7 @@ class ContextProvider extends Component {
         for (let i = 0; i < data.length; i += 1) {
           data[i].icon = leafletIcon(`./assets/${data[i].type.name}.png`);
         }
+        console.log(data)
         this.setState({
           issues: data,
         });
@@ -78,7 +79,6 @@ class ContextProvider extends Component {
   }
 
   showComments = (bool, issue) => {
-    console.log(issue)
     if (bool) {
       this.setState({
         showingComments: true,
@@ -97,7 +97,6 @@ class ContextProvider extends Component {
     this.setState({
       selectedIcon: null,
       placingIcon: bool,
-      marker: null,
     });
   }
 
