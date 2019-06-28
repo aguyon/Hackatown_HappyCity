@@ -5,10 +5,7 @@ import ProfilButton from '../components/ProfilButton/ProfilButton';
 import BurgerButton from '../components/BurgerButton/BurgerButton';
 import SearchBar from '../components/Map/search';
 import FilterButton from '../components/FilterButton/FilterButton';
-<<<<<<< HEAD
-=======
 import Comments from '../components/Comments/Comments';
->>>>>>> dev
 import withContext from '../components/Context/withContext';
 
 class TheMap extends Component {
@@ -18,11 +15,8 @@ class TheMap extends Component {
   }
 
   render() {
-<<<<<<< HEAD
     const { userInfo } = this.props;
-=======
     const { showingComments } = this.props;
->>>>>>> dev
     return (
       <div>
         <div>
