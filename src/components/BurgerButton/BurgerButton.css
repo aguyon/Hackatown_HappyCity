@@ -1,0 +1,19 @@
+.BurgerButton {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  background-image: url("../../assets/icons/burger-green.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+  z-index: 1000;
+}
+
+.MenuLogo {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  height: 60px;
+}

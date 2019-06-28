@@ -1,0 +1,29 @@
+.title {
+    margin-top: 120px;
+}
+
+.info {
+    font-weight: 500;
+}
+
+.infoUser {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.problemes {
+    margin-bottom: -5px;
+}
+
+.issuesImg {
+    width: 60px;
+}
+
+.encartIssues {
+    text-align: center;
+}
+
+.infoIssuesName {
+    margin-bottom: 5px;
+}

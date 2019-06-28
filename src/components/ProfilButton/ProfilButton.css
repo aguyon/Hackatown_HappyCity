@@ -1,0 +1,12 @@
+.ProfilButton {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  background-image: url("../../assets/icons/profil-green.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+  z-index: 1000;
+}

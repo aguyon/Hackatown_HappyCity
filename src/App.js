@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Switch } from 'react-router-dom';
+import ContextProvider from './components/Context/ContextProvider';
 import './App.css';
+import Home from './pages/Home';
+import Inscription from './pages/Inscription';
+import Connexion from './pages/Connexion';
+import TheMap from './pages/TheMap';
+import Actualite from './pages/Actualite';
+import Admin from './pages/Admin';
+import Contact from './pages/Contact';
+import Profil from './pages/Profil';
+import SuccessCheck from './components/SuccessCheck/SuccessCheck';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ContextProvider>
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/success" component={SuccessCheck} />
+          <Route path="/inscription" component={Inscription} />
+          <Route path="/connexion" component={Connexion} />
+          <Route path="/map" component={TheMap} />
+          <Route path="/actualite" component={Actualite} />
+          <Route path="/admin" component={Admin} />
+          <Route path="/profil" component={Profil} />
+          <Route path="/contact" component={Contact} />
+        </Switch>
+      </div>
+    </ContextProvider>
   );
 }
 
