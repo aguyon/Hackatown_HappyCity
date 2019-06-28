@@ -38,8 +38,13 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flex: '1 0 auto',
+    width: '55vw',
+    textAlign: 'left',
   },
   cover: {
+    margin: '24px',
+    width: '25vw',
+    height: '25vw',
   },
   loved: {
     color: '#00FF88',

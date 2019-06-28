@@ -69,7 +69,7 @@ class ContactForm extends Component {
               placeholder="Select"
               value={to}
             >
-              <option value="mayor">HappyTown</option>
+              <option value="mayor">Happy City</option>
               <option value="type">Le Maire</option>
             </Input>
           </FormGroup>
