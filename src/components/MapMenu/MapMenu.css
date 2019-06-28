@@ -1,7 +1,8 @@
 .MapMenu {
   display: flex;
   flex-direction: row;
-  margin-top: -17px;
+  min-height: 300px;
+  margin-top: -24px;
 }
 
 .MapMenu img {
@@ -37,4 +38,26 @@
   justify-content: space-between;
   padding-left: 24px;
   z-index: 1000;
+}
+
+.IssuesList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.IssuesNames {
+  color: rgba(255, 54, 0, 0.5);
+  font-weight: bold;
+  margin-left: 12px;
+}
+
+.Repport {
+  margin: 24px;
+}
+
+.AddNew {
+  color: #00FF88;
+  font-weight: bold;
+  margin-left: 12px;
 }

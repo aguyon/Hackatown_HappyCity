@@ -4,10 +4,10 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import axios from 'axios';
 import withContext from '../components/Context/withContext';
 import BurgerButton from '../components/BurgerButton/BurgerButton';
 import ProfilButton from '../components/ProfilButton/ProfilButton';
+import AdminForm from '../components/Admin/AdminForm';
 
 class Admin extends Component {
   constructor(props) {
@@ -29,36 +29,56 @@ class Admin extends Component {
   }
 
   render() {
-    const { userInfo } = this.props;
+    const {
+      userInfo, users, issues, solutions,
+    } = this.props;
+    const { profils } = this.state;
     return (
       <div>
         <div>
           <BurgerButton />
           {
-            userInfo && userInfo.role === 'admin' ? (
+            localStorage.getItem('user') ? (
               null
             ) : <ProfilButton />
           }
         </div>
-        <h2>Admin</h2>
+        <h2>
+          Hello
+          {' '}
+          {profils}
+          {' '}
+          !
+        </h2>
+        <h3>
+          Stats
+        </h3>
         <Card>
           <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              Les stats de ma ville
+            <Typography color="textSecondary">
+              <b>{users.length}</b>
+              {' '}
+              users
             </Typography>
             <Typography color="textSecondary">
-              adjective
+              <b>{issues.length}</b>
+              {' '}
+              issues
             </Typography>
-            <Typography variant="body2" component="p">
-              well meaning and kindly.
-              <br />
-              {'"a benevolent smile"'}
+            <Typography color="textSecondary">
+              <b>{solutions.length}</b>
+              {' '}
+              solutions
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Learn More</Button>
+            <Button size="small">More stats (coming soon)</Button>
           </CardActions>
         </Card>
+        <h3>
+          Dashboard
+        </h3>
+        <AdminForm />
       </div>
     );
   }

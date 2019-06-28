@@ -1,0 +1,23 @@
+.HappyForm {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.HappyFormGroup {
+  
+}
+
+.HappyInput {
+  width: 80px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  min-width: 66%;
+  border: solid 3px #B5A3A3;
+  border-radius: 50px;
+  margin: 12px;
+  padding: 12px 24px 12px;
+  font-weight: bold;
+  font-size: 1em;
+  align-self: center;
+}
