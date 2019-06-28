@@ -22,7 +22,6 @@ class IssueForm extends Component {
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
-
     this.setState({
       [name]: value,
     });
@@ -43,17 +42,12 @@ class IssueForm extends Component {
       description,
     } = this.state;
     const {
-      marker,
-      userInfo,
-      issuesList,
-      selectedIcon,
+      marker, userInfo, issuesList, selectedIcon, getIssues,
     } = this.props;
-    const { lat } = marker.position;
-    const { lng } = marker.position.lng;
+    const lat = marker.position.lat;
+    const lng = marker.position.lng;
     axios.post('http://134.209.194.234/api/issues', {
-      location: [
-        lat, lng,
-      ],
+      location: [lat, lng],
       status: 'Processing',
       score: 1,
       type: this.getTypeIssue(issuesList, selectedIcon),
@@ -61,9 +55,9 @@ class IssueForm extends Component {
       comments: [],
       description,
     })
-      .then(res => console.log(`res${res}`))
-      .catch(e => console.log(`err${e}`));
-    //  .then(getIssues());
+      .then(res => console.log(res))
+      .then(getIssues())
+      .catch(e => console.log(e));
     // .then(res => axios.post('http://134.209.194.234/api/comments', {
     //   creator: '/api/users/12',
     //   content: 'BONJOUR',
@@ -71,6 +65,7 @@ class IssueForm extends Component {
     //   issues: '/api/issues/21',
     // })),
     this.setState({
+
     });
   }
 
@@ -114,15 +109,17 @@ class IssueForm extends Component {
               placeholder="Additionnal infos"
             />
           </FormGroup>
-          <Button
-            type="submit"
-            value="Submit"
-            className="HappyButton"
-            disabled={!this.validateForm()}
-            onClick={<SuccessCheck />}
-          >
-            Post issue
-          </Button>
+          <div className="btnSend">
+            <Button
+              type="submit"
+              value="Submit"
+              className="HappyButton"
+              disabled={!this.validateForm()}
+              onClick={<SuccessCheck />}
+            >
+              Post issue
+            </Button>
+          </div>
         </Form>
       </div>
     );

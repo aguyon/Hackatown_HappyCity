@@ -75,7 +75,6 @@ class ContextProvider extends Component {
   }
 
   showComments = (bool, issue) => {
-    console.log(issue);
     if (bool) {
       this.setState({
         showingComments: true,
@@ -94,7 +93,6 @@ class ContextProvider extends Component {
     this.setState({
       selectedIcon: null,
       placingIcon: bool,
-      marker: null,
     });
   }
 

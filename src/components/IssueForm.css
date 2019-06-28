@@ -1,23 +1,27 @@
 .HappyForm {
   display: flex;
   flex-direction: column;
-  align-self: center;
+  text-align: center;
+  width: 136%;
 }
 
 .HappyFormGroup {
-  
+  text-align: center;
+  margin-top: -3px;
+}
+
+.title {
+  margin-top: 30px !important;
+  text-align: center;
 }
 
 .HappyInput {
-  width: 80px;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  min-width: 66%;
-  border: solid 3px #B5A3A3;
-  border-radius: 50px;
-  margin: 12px;
-  padding: 12px 24px 12px;
-  font-weight: bold;
-  font-size: 1em;
-  align-self: center;
+  width: 200px;
+  height: 39px;
+  border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+  background-color: #fff;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
+  border: solid 1px #cbc9c9;
+  margin-top: 20px;
+  padding-left: 10px;
 }

@@ -18,10 +18,16 @@ class Comments extends Component {
   onSubmit = () => {
     const { text } = this.state;
     const { showCommentsIssue, userInfo } = this.props;
+    let commentator = '';
+    if (!userInfo) {
+      commentator = '39';
+    } else {
+      commentator = userInfo.id;
+    }
 
-    axios.post('http://134.209.194.234/api/comments/', {
-      // commentator: `/api/users/${userInfo.id}`,
-      commentator: `/api/users/39`,
+    axios.post('http://134.209.194.234/api/comments', {
+      commentator: `/api/users/${commentator}`,
+      // commentator: `/api/users/39`,
       content: text,
       issues: `/api/issues/${showCommentsIssue.id}`,
     })
@@ -31,14 +37,30 @@ class Comments extends Component {
   onFileChange = (e) => {
     const { showCommentsIssue, userInfo } = this.props;
 
-    const files = Array.from(e.target.files);
     const formData = new FormData();
-    files.forEach((file, i) => {
-      formData.append(i, file);
-    });
+    formData.append('file', e.target.files[0]);
 
-    axios.post(`http://134.209.194.234/api/comments/${showCommentsIssue.id}`, formData)
-      .then(res => console.log(res));
+    axios.post('http://134.209.194.234/api/media_objects', formData)
+      .then((res) => {
+        // get /api/comments?user=id&issue=id => comment
+        console.log(res.data)
+        axios.get(`http://134.209.194.234/api/comments?commentator=${userInfo.id}&issues=${showCommentsIssue.id}`)
+          .then((r) => {
+            // put /api/comments/:commentId, {media: res.data.contentUrl}
+            console.log(r);
+            axios.put(`http://134.209.194.234/api/comments/${r.data.id}`, {
+              media: res.data.contentUrl,
+            })
+              .then(response => console.log(response));
+          });
+      });
+    // axios.post('http://134.209.194.234/api/comments', {
+    //   commentator: `/api/users/${commentator}`,
+    //   // commentator: `/api/users/39`,
+    //   content: `http://134.209.194.234/${res.data.contentUrl}`,
+    //   issues: `/api/issues/${showCommentsIssue.id}`,
+    // })
+    //   .then(res => console.log(res));
   }
 
   render() {
@@ -57,11 +79,12 @@ class Comments extends Component {
           Post comment
         </button>
         {/* Post photo */}
-        <input className="HappyButton" type="file" onChange={this.onFileChange} />
+        <input className="HappyButton" type="file" name="file" onChange={this.onFileChange} />
         {
           showCommentsIssue.comments.map((comment, i) => (
-            <div key={`comment-${i + 1}`}>
-              coucou
+            <div className="Comment">
+              <p>{comment.commentator.username}</p>
+              <p>{comment.content}</p>
             </div>
           ))
         }
