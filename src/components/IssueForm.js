@@ -6,6 +6,7 @@ import {
   Button, Form, FormGroup, Input,
 } from 'reactstrap';
 import withContext from './Context/withContext';
+import SuccessCheck from './SuccessCheck/SuccessCheck';
 
 class IssueForm extends Component {
   constructor(props) {
@@ -28,8 +29,6 @@ class IssueForm extends Component {
   };
 
   getTypeIssue = (issuesList, selectedIcon) => {
-    console.log(`coucouc${issuesList}`);
-    console.log(`salut${selectedIcon}`);
     for (let i = 0; i < issuesList.length; i += 1) {
       if (issuesList[i].name === selectedIcon) {
         return issuesList[i]['@id'];
@@ -41,7 +40,7 @@ class IssueForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const {
-      description, infos,
+      description,
     } = this.state;
     const {
       marker,
@@ -51,8 +50,6 @@ class IssueForm extends Component {
     } = this.props;
     const { lat } = marker.position;
     const { lng } = marker.position.lng;
-    console.log(issuesList);
-    console.log(this.getTypeIssue(issuesList, selectedIcon));
     axios.post('http://134.209.194.234/api/issues', {
       location: [
         lat, lng,
@@ -66,6 +63,7 @@ class IssueForm extends Component {
     })
       .then(res => console.log(`res${res}`))
       .catch(e => console.log(`err${e}`));
+    //  .then(getIssues());
     // .then(res => axios.post('http://134.209.194.234/api/comments', {
     //   creator: '/api/users/12',
     //   content: 'BONJOUR',
@@ -121,7 +119,7 @@ class IssueForm extends Component {
             value="Submit"
             className="HappyButton"
             disabled={!this.validateForm()}
-            onClick={this.handleOpen}
+            onClick={<SuccessCheck />}
           >
             Post issue
           </Button>

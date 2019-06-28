@@ -51,6 +51,10 @@ const BurgerButton = ({ userInfo }) => {
         <ListItem button>
           <Link to="/contact" className="Vert">Contact</Link>
         </ListItem>
+        <hr />
+        <ListItem button>
+          <Link to="/connexion" className="Vert">Connexion</Link>
+        </ListItem>
         {
           userInfo && userInfo.role === 'admin' ? (
             <ListItem button>
