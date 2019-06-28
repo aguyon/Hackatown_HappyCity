@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import withContext from '../Context/withContext';
 import './MapMenu.css';
 import IssueForm from '../IssueForm';
+import More from '../../assets/icons/more-orange-dark.png';
 import Comments from '../Comments/Comments';
 
 const useStyles = makeStyles({
@@ -84,9 +85,9 @@ function MapMenu({
         {
           placingIcon
             ? (
-              <div>
+              <div className="ConfirmCancelButtons">
+                <button className="PasHappyButton" type="button" onClick={() => switchPlacingIcon(false)}>Cancel</button>
                 <button className="HappyButton" type="button" onClick={confirmButton('bottom', true)}>Confirm</button>
-                <button className="HappyButton" type="button" onClick={() => switchPlacingIcon(false)}>Cancel</button>
               </div>
             )
             : issuesList.map((issue, i) => (

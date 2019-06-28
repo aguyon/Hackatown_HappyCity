@@ -1,7 +1,11 @@
 import React from 'react';
 import './FilterButton.css';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
 import withContext from '../Context/withContext';
 
 const useStyles = makeStyles({
@@ -34,28 +38,26 @@ const FilterButton = ({ issuesList, filters, changeFilters }) => {
       className={classes.list}
       role="presentation"
     >
-      <h2>Filters</h2>
+      <div className="FilterTitle">Map icons</div>
+      <Divider />
       <form>
         {
           issuesList.map((issue, i) => (
-            <label>
-              {issue.name}
-              <img
-                className="HappyIcon"
-                src={`./assets/${issue.name}.png`}
-                alt={issue.name}
-              />
-              <input
-                type="checkbox"
-                name={issue.name}
-                checked={filters[issue.name]}
-                onChange={() => changeFilters(issue.name)}
-              />
-            </label>
-
+            <List>
+              <ListItem className="Vert">
+                {issue.name}
+                <input
+                  type="checkbox"
+                  name={issue.name}
+                  checked={filters[issue.name]}
+                  onChange={() => changeFilters(issue.name)}
+                />
+              </ListItem>
+            </List>
           ))
         }
       </form>
+      <Divider />
     </div>
   );
 

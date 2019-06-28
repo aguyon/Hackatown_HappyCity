@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ContactForm from '../components/Contact/ContactForm';
 import ProfilButton from '../components/ProfilButton/ProfilButton';
 import BurgerButton from '../components/BurgerButton/BurgerButton';
-import FilterButton from '../components/FilterButton/FilterButton';
 import withContext from '../components/Context/withContext';
 
 class Contact extends Component {
@@ -22,7 +21,6 @@ class Contact extends Component {
               null
             ) : <ProfilButton />
           }
-          <FilterButton />
         </div>
         <div>
           <ContactForm />
