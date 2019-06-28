@@ -67,8 +67,13 @@ class AdminForm extends Component {
               placeholder="Select issue"
               value={issue}
             >
-              <option value="1">lol</option>
-              <option value="type">Le Maire</option>
+              <option value="type">Degradation</option>
+              <option value="type">Bike path</option>
+              <option value="type">Handicap accessibility</option>
+              <option value="type">Wild trash deposite</option>
+              <option value="type">Lack of Wifi</option>
+              <option value="type">Eletricity problem</option>
+              <option value="type">Not enough nature</option>
             </Input>
           </FormGroup>
           <FormGroup>
