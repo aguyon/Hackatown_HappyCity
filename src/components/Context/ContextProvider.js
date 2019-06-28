@@ -62,7 +62,6 @@ class ContextProvider extends Component {
       .then((res) => {
         this.setState({ issuesList: res.data['hydra:member'] });
       });
-
     axios.get('http://134.209.194.234/api/solutions')
       .then(res => this.setState({
         solutions: res.data['hydra:member'],

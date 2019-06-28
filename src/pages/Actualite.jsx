@@ -11,14 +11,16 @@ function Actualite({ solutions, userInfo }) {
       <div>
         <BurgerButton />
         {
-            userInfo && userInfo.role === 'admin' ? (
-              null
-            ) : <ProfilButton />
-          }
+          userInfo && userInfo.role === 'admin' ? (
+            null
+          ) : <ProfilButton />
+        }
       </div>
       <h2>Actualités</h2>
       <div className="nbissues">
-        Dernières solutions proposées
+        {solutions.length}
+        {' '}
+        dernières actualités
       </div>
       <Grid
         item
