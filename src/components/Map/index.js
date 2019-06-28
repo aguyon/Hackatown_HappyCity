@@ -15,6 +15,8 @@ import LocateButton from './locateButton';
 import constants from './const';
 import SearchBar from './search';
 import MarkerContent from './MarkerContent';
+import Comments from '../Comments/Comments';
+
 
 const { userIcon } = constants();
 
@@ -64,7 +66,7 @@ class Map extends Component {
 
   render() {
     const {
-      addMarker, issues, marker, filters,
+      addMarker, issues, marker, filters, showingComments,
     } = this.props;
     const {
       location,
@@ -82,6 +84,11 @@ class Map extends Component {
         // onMoveEnd={this.onMove}
         ref={this.mapRef}
       >
+        {
+          showingComments
+            ? <Comments />
+            : null
+        }
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
           url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png"

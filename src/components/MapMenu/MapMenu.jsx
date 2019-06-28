@@ -47,7 +47,11 @@ function MapMenu({
     setState({ ...state, [side]: open });
   };
 
-  const fullList = (
+  if (showingComments) {
+    toggleDrawer('bottom', true);
+  }
+
+  const fullList = side => (
     <div className="MapMenu">
       {
         !confirmed
@@ -106,7 +110,7 @@ function MapMenu({
         {
           !showingComments
             ? fullList('bottom')
-            : <Comments />
+            : <Comments toggleDrawer={toggleDrawer} />
         }
       </SwipeableDrawer>
     </div>

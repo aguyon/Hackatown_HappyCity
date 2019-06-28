@@ -42,7 +42,7 @@ class MarkerContent extends Component {
             )
             : null
         }
-        <button type="button" onClick={() => showComments(issue)}>Comments</button>
+        <button type="button" onClick={() => showComments(true, issue)}>Comments</button>
       </div>
     );
   }

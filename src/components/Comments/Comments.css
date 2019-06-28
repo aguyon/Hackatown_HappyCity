@@ -1,0 +1,11 @@
+.Comments {
+  bottom: 0;
+  left: 25%;
+  margin-left: auto;
+  margin-right:auto;
+  min-width: 50vw;
+  min-height: 50vh;
+  background-color: white;
+  position: absolute;
+  z-index: 1000000;
+}

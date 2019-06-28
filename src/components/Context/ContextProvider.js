@@ -31,6 +31,7 @@ class ContextProvider extends Component {
       changeFilters: this.changeFilters,
       showingComments: false,
       showComments: this.showComments,
+      showCommentsIssue: null,
     };
   }
 
@@ -69,7 +70,7 @@ class ContextProvider extends Component {
         placingIcon: true,
         marker: {
           type: e.type,
-          icon: leafletIcon(`./assets/${selectedIcon.name}.png`),
+          icon: leafletIcon(`./assets/${selectedIcon}.png`),
           position: e.latlng,
         },
       });
@@ -77,6 +78,7 @@ class ContextProvider extends Component {
   }
 
   showComments = (bool, issue) => {
+    console.log(issue)
     if (bool) {
       this.setState({
         showingComments: true,
