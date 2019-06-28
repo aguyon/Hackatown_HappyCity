@@ -8,6 +8,10 @@ class Profil extends React.Component {
     this.state = {};
   }
 
+  componentWillReceiveProps() {
+    
+  }
+
   render() {
     const { userInfo } = this.props;
     return (
