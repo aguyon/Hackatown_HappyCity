@@ -3,33 +3,33 @@ import {
   Button, FormGroup, Input, Form, Label,
 } from 'reactstrap';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 import './ContactForm.css';
 
 class ContactForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      /* username: '',
-      password: '',
-      redirect: false,
+      email: '',
+      content: '',
+      object: '',
+      to: '',
       errmsg: '',
-    */};
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  /* handleSubmit = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
-
-    const { username, password } = this.state;
-    axios.get(`http://134.209.194.234/api/users?username=${username}`).then((res) => {
-      if (
-        res.data['hydra:member'][0].username === username
-        && res.data['hydra:member'][0].password === password
-      ) {
-        this.setState({ redirect: true });
-      } else {
-        this.setState({ errmsg: 'Username or password invalid' });
-      }
+    const {
+      email, content, object, to,
+    } = this.state;
+    axios.post('http://134.209.194.234/contact', {
+      email,
+      content,
+      object,
+      to,
     });
   };
 
@@ -43,16 +43,18 @@ class ContactForm extends Component {
     });
   };
 
-  validateForm = () => {
-    const { username, password } = this.state;
-    return username.length > 0 && password.length > 0;
-  }; */
+  validateForm() {
+    const {
+      email, content,
+    } = this.state;
+    return content.length > 0
+      && email.length > 0;
+  }
 
   render() {
     const {
-      username, redirect, errmsg,
+      errmsg, to, object,
     } = this.state;
-    if (redirect) return <Redirect to="/map" />;
     return (
       <div className="wholeform">
         <h2>Nous contacter</h2>
@@ -60,48 +62,51 @@ class ContactForm extends Component {
           <FormGroup>
             <Label>Ma question concerne</Label>
             <Input
-              name="select"
+              name="to"
               type="select"
               className="inputSelect"
-              placeholder="Select "
+              onChange={this.handleInputChange}
+              placeholder="Select"
+              value={to}
             >
-              <option>HappyTown</option>
-              <option>Le Maire</option>
+              <option value="mayor">HappyTown</option>
+              <option value="type">Le Maire</option>
             </Input>
           </FormGroup>
-          <FormGroup controlid="username">
+          <FormGroup>
             <Input
-              name="username"
-              autoFocus
-              type="username"
+              name="email"
+              type="mail"
               className="inputLogin"
-              checked={username}
               onChange={this.handleInputChange}
-              placeholder="Username"
+              placeholder="Email"
             />
           </FormGroup>
           <FormGroup>
             <Input
-              name="select"
+              name="object"
               type="select"
               className="inputSelect"
-              placeholder="Select "
+              onChange={this.handleInputChange}
+              placeholder="Select"
+              value={object}
             >
-              <option>J’ai trouvé un défaut dans l’application</option>
-              <option>Proposition</option>
+              <option value="default">J’ai trouvé un défaut dans l’application</option>
+              <option value="proposition">Proposition</option>
             </Input>
           </FormGroup>
           <FormGroup>
             <Input
               type="textarea"
-              name="text"
+              name="content"
               className="inputQuestion"
+              onChange={this.handleInputChange}
               placeholder="Votre question"
             />
           </FormGroup>
           <FormGroup>
             <Button block type="submit" value="Submit" className="HappyButton">
-              <div>Send</div>
+              <div>Envoyer</div>
             </Button>
             {errmsg}
           </FormGroup>

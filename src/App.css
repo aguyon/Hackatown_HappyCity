@@ -97,10 +97,20 @@ button {
 }
 
 .Icon {
-  max-height: 170px;;
+  max-height: 170px;
 }
 
 .Presentation {
   display: flex;
   flex-direction: column;
+}
+
+.aligngo {
+  margin-top: 10px;
+}
+
+.ContainGreg {
+  overflow: hidden;
+  height: 600px;
+  width:400px;
 }

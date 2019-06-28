@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import Profil from '../components/Profil/index';
 import BurgerButton from '../components/BurgerButton/BurgerButton';
 
-class Profil extends Component {
+class MyProfil extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,11 +15,11 @@ class Profil extends Component {
           <BurgerButton />
         </div>
         <div>
-          Mon profil
+          <Profil />
         </div>
       </div>
     );
   }
 }
 
-export default Profil;
+export default MyProfil;

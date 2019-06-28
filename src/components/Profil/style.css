@@ -1,0 +1,22 @@
+.title {
+    margin-top: 120px;
+}
+
+.info {
+    font-weight: 500;
+}
+
+.infoUser {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 25px;
+}
+
+.issuesImg {
+    width: 60px;
+}
+
+.infoIssues {
+    
+}

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import constants from '../Map/const';
 
-const { issuesIcons, leafletIcon } = constants();
+const { leafletIcon } = constants();
 
 export const Context = React.createContext();
 
@@ -12,65 +12,51 @@ class ContextProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      admin: false,
       selectedIcon: null,
       placingIcon: false,
       issues: [],
       marker: null,
-      issuesList: [
-        {
-          type: 'Espaces verts',
-          icon: issuesIcons[0],
-        },
-        {
-          type: 'Poubelles pas fraîches',
-          icon: issuesIcons[1],
-        },
-        {
-          type: 'Balek',
-          icon: issuesIcons[2],
-        },
-      ],
-      actucards: [
-        {
-          id: 50,
-          icon: issuesIcons[0],
-          title: 'The title',
-          description: 'Le maire met son message ici',
-          date: '10-10-19',
-          score: 485,
-          status: 'En cours',
-        },
-        {
-          id: 48,
-          icon: issuesIcons[1],
-          title: 'The title 1',
-          description: 'Le maire met son message ici 1',
-          score: 398,
-          status: 'Terminé',
-        },
-        {
-          id: 35,
-          icon: issuesIcons[2],
-          title: 'The title 2',
-          description: 'Le maire met son message ici 2',
-          score: 152,
-          status: 'Non résolu',
-        },
-      ],
+      filters: {},
+      issuesList: [],
+      actucards: [],
       solutions: [],
       isLoggedIn: false,
       isLog: this.isLog,
+      userInfo: null,
       addMarker: this.addMarker,
       selectIcon: this.selectIcon,
       switchPlacingIcon: this.switchPlacingIcon,
-      userInfo: null,
       getUserInfo: this.getUserInfo,
+      changeFilters: this.changeFilters,
+      showingComments: false,
+      showComments: this.showComments,
+      showCommentsIssue: null,
     };
   }
 
   componentWillMount() {
+    axios.get('http://134.209.194.234/api/types')
+      .then((res) => {
+        const filters = {};
+        for (let i = 0; i < res.data['hydra:member'].length; i += 1) {
+          filters[res.data['hydra:member'][i].name] = true;
+        }
+        this.setState({
+          filters,
+          issuesList: res.data['hydra:member'],
+        });
+      });
     axios.get('http://134.209.194.234/api/issues')
-      .then(res => console.log(res.data['hydra:member']));
+      .then((res) => {
+        const data = res.data['hydra:member'];
+        for (let i = 0; i < data.length; i += 1) {
+          data[i].icon = leafletIcon(`./assets/${data[i].type.name}.png`);
+        }
+        this.setState({
+          issues: data,
+        });
+      });
     axios.get('http://134.209.194.234/api/solutions')
       .then(res => this.setState({
         solutions: res.data['hydra:member'],
@@ -84,10 +70,22 @@ class ContextProvider extends Component {
         placingIcon: true,
         marker: {
           type: e.type,
-          icon: leafletIcon(selectedIcon.icon),
+          icon: leafletIcon(`./assets/${selectedIcon}.png`),
           position: e.latlng,
         },
       });
+    }
+  }
+
+  showComments = (bool, issue) => {
+    console.log(issue)
+    if (bool) {
+      this.setState({
+        showingComments: true,
+        showCommentsIssue: issue,
+      });
+    } else {
+      this.setState({ showingComments: false });
     }
   }
 
@@ -97,6 +95,7 @@ class ContextProvider extends Component {
 
   switchPlacingIcon = (bool) => {
     this.setState({
+      selectedIcon: null,
       placingIcon: bool,
       marker: null,
     });
@@ -108,6 +107,12 @@ class ContextProvider extends Component {
 
   getUserInfo = (info) => {
     this.setState({ userInfo: info });
+  }
+
+  changeFilters = (filter) => {
+    const { filters } = this.state;
+    filters[filter] = !filters[filter];
+    this.setState({ filters });
   }
 
   render() {

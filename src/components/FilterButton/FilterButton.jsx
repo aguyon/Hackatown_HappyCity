@@ -1,12 +1,11 @@
 import React from 'react';
-import './BurgerButton.css';
+import './FilterButton.css';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import logo from '../../assets/images/HappyCityLogo.png';
 import withContext from '../Context/withContext';
 
 const useStyles = makeStyles({
@@ -18,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-const BurgerButton = ({ userInfo }) => {
+const FilterButton = ({ issuesList, filters, changeFilters }) => {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -38,29 +37,27 @@ const BurgerButton = ({ userInfo }) => {
     <div
       className={classes.list}
       role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
     >
-      <List>
-        <ListItem button>
-          <Link to="/map" className="Vert">Carte</Link>
-        </ListItem>
-        <ListItem button>
-          <Link to="/actualite" className="Vert">Actus</Link>
-        </ListItem>
-        <ListItem button>
-          <Link to="/contact" className="Vert">Contact</Link>
-        </ListItem>
-        {
-          userInfo && userInfo.role === 'admin' ? (
-            <ListItem button>
-              <Link to="/admin" className="Vert">Admin</Link>
-            </ListItem>
-          ) : null
-        }
-      </List>
+      <div className="FilterTitle">Map icons</div>
       <Divider />
-      <img src={logo} alt="Logo" className="MenuLogo" />
+      <form>
+        {
+          issuesList.map((issue, i) => (
+            <List>
+              <ListItem className="Vert">
+                {issue.name}
+                <input
+                  type="checkbox"
+                  name={issue.name}
+                  checked={filters[issue.name]}
+                  onChange={() => changeFilters(issue.name)}
+                />
+              </ListItem>
+            </List>
+          ))
+        }
+      </form>
+      <Divider />
     </div>
   );
 
@@ -71,7 +68,7 @@ const BurgerButton = ({ userInfo }) => {
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={toggleDrawer('left', true)}
-        className="BurgerButton"
+        className="FilterButton"
       />
 
       <SwipeableDrawer
@@ -85,4 +82,4 @@ const BurgerButton = ({ userInfo }) => {
   );
 };
 
-export default withContext(BurgerButton);
+export default withContext(FilterButton);

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import ContactForm from '../components/Contact/ContactForm';
 import ProfilButton from '../components/ProfilButton/ProfilButton';
 import BurgerButton from '../components/BurgerButton/BurgerButton';
-import ContactForm from '../components/Contact/ContactForm';
+import withContext from '../components/Context/withContext';
 
 class Contact extends Component {
   constructor(props) {
@@ -10,11 +11,18 @@ class Contact extends Component {
   }
 
   render() {
+    const { userInfo } = this.props;
     return (
       <div>
         <div>
           <BurgerButton />
-          <ProfilButton />
+          {
+            userInfo && userInfo.role === 'admin' ? (
+              null
+            ) : <ProfilButton />
+          }
+        </div>
+        <div>
           <ContactForm />
         </div>
       </div>
@@ -22,4 +30,4 @@ class Contact extends Component {
   }
 }
 
-export default Contact;
+export default withContext(Contact);
