@@ -3,33 +3,30 @@ import {
   Button, FormGroup, Input, Form, Label,
 } from 'reactstrap';
 import axios from 'axios';
-import './ContactForm.css';
+import { Link, Redirect } from 'react-router-dom';
+import withContext from '../Context/withContext';
 
-class ContactForm extends Component {
+class AdminForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      content: '',
-      object: '',
-      to: '',
-      errmsg: '',
+      issue: '',
+      title: '',
+      description: '',
+      status: '',
     };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     const {
-      email, content, object, to,
+      issue, title, description, status,
     } = this.state;
-    axios.post('http://134.209.194.234/contact', {
-      email,
-      content,
-      object,
-      to,
+    axios.post('http://134.209.194.234/solutions', {
+      issue,
+      title,
+      description,
+      status,
     });
   };
 
@@ -45,55 +42,43 @@ class ContactForm extends Component {
 
   validateForm() {
     const {
-      email, content,
+      title, description,
     } = this.state;
-    return content.length > 0
-      && email.length > 0;
+    return title.length > 0
+      && description.length > 0;
   }
 
   render() {
+    const { solutions } = this.props;
     const {
-      errmsg, to, object,
+      errmsg, issue, status,
     } = this.state;
     return (
       <div className="wholeform">
-        <h2>Contacter</h2>
+        <h5>Add your solution</h5>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
-            <Label>Ma question concerne</Label>
+            <Label>Select</Label>
             <Input
-              name="to"
+              name="issu"
               type="select"
               className="inputSelect"
               onChange={this.handleInputChange}
-              placeholder="Select"
-              value={to}
+              placeholder="Select issue"
+              value={issue}
             >
-              <option value="mayor">Happy City</option>
+              <option value="1">lol</option>
               <option value="type">Le Maire</option>
             </Input>
           </FormGroup>
           <FormGroup>
             <Input
-              name="email"
-              type="mail"
+              name="title"
+              type="test"
               className="inputLogin"
               onChange={this.handleInputChange}
-              placeholder="Email"
+              placeholder="Title"
             />
-          </FormGroup>
-          <FormGroup>
-            <Input
-              name="object"
-              type="select"
-              className="inputSelect"
-              onChange={this.handleInputChange}
-              placeholder="Select"
-              value={object}
-            >
-              <option value="default">J’ai trouvé un défaut dans l’application</option>
-              <option value="proposition">Proposition</option>
-            </Input>
           </FormGroup>
           <FormGroup>
             <Input
@@ -101,12 +86,26 @@ class ContactForm extends Component {
               name="content"
               className="inputQuestion"
               onChange={this.handleInputChange}
-              placeholder="Votre question"
+              placeholder="Your description"
             />
           </FormGroup>
           <FormGroup>
+            <Input
+              name="status"
+              type="select"
+              className="inputSelect"
+              onChange={this.handleInputChange}
+              placeholder="Select status"
+              value={status}
+            >
+              <option value="done">Done</option>
+              <option value="progress">In Progress</option>
+              <option value="debate">Debate</option>
+            </Input>
+          </FormGroup>
+          <FormGroup>
             <Button block type="submit" value="Submit" className="HappyButton">
-              <div>Envoyer</div>
+              <div>Post solution</div>
             </Button>
             {errmsg}
           </FormGroup>
@@ -116,4 +115,4 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm;
+export default withContext(AdminForm);

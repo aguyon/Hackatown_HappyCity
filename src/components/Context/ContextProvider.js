@@ -15,6 +15,7 @@ class ContextProvider extends Component {
       admin: false,
       selectedIcon: null,
       placingIcon: false,
+      users: [],
       issues: [],
       marker: null,
       filters: {},
@@ -61,6 +62,10 @@ class ContextProvider extends Component {
       .then(res => this.setState({
         solutions: res.data['hydra:member'],
       }));
+    axios.get('http://134.209.194.234/api/users')
+      .then(res => this.setState({
+        users: res.data['hydra:member'],
+      }));
   }
 
   addMarker = (e) => {
@@ -78,7 +83,7 @@ class ContextProvider extends Component {
   }
 
   showComments = (bool, issue) => {
-    console.log(issue)
+    console.log(issue);
     if (bool) {
       this.setState({
         showingComments: true,
