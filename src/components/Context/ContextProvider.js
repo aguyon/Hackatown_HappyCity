@@ -29,6 +29,8 @@ class ContextProvider extends Component {
       switchPlacingIcon: this.switchPlacingIcon,
       getUserInfo: this.getUserInfo,
       changeFilters: this.changeFilters,
+      showingComments: false,
+      showComments: this.showComments,
     };
   }
 
@@ -48,10 +50,8 @@ class ContextProvider extends Component {
       .then((res) => {
         const data = res.data['hydra:member'];
         for (let i = 0; i < data.length; i += 1) {
-          console.log(data[i].icon)
           data[i].icon = leafletIcon(`./assets/${data[i].type.name}.png`);
         }
-        console.log(data);
         this.setState({
           issues: data,
         });
@@ -69,10 +69,21 @@ class ContextProvider extends Component {
         placingIcon: true,
         marker: {
           type: e.type,
-          icon: leafletIcon(selectedIcon.icon),
+          icon: leafletIcon(`./assets/${selectedIcon.name}.png`),
           position: e.latlng,
         },
       });
+    }
+  }
+
+  showComments = (bool, issue) => {
+    if (bool) {
+      this.setState({
+        showingComments: true,
+        showCommentsIssue: issue,
+      });
+    } else {
+      this.setState({ showingComments: false });
     }
   }
 

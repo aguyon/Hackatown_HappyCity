@@ -14,7 +14,6 @@ const useStyles = makeStyles({
 });
 
 const FilterButton = ({ issuesList, filters, changeFilters }) => {
-  console.log(filters)
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -35,11 +34,17 @@ const FilterButton = ({ issuesList, filters, changeFilters }) => {
       className={classes.list}
       role="presentation"
     >
+      <h2>Filters</h2>
       <form>
         {
           issuesList.map((issue, i) => (
             <label>
               {issue.name}
+              <img
+                className="HappyIcon"
+                src={`./assets/${issue.name}.png`}
+                alt={issue.name}
+              />
               <input
                 type="checkbox"
                 name={issue.name}

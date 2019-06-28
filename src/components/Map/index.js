@@ -13,6 +13,8 @@ import {
 import withContext from '../Context/withContext';
 import LocateButton from './locateButton';
 import constants from './const';
+import SearchBar from './search';
+import MarkerContent from './MarkerContent';
 
 const { userIcon } = constants();
 
@@ -100,23 +102,19 @@ class Map extends Component {
         />
         {
           issues.map((issue, i) => (
-            // filters[issue]
-            //   ? (
-            <Marker
-              icon={issue.icon}
-              key={`issue-${i + 1}`}
-              position={issue.location}
-            >
-              <Popup>
-                <span>
-                  {
-                    issue.description
-                  }
-                </span>
-              </Popup>
-            </Marker>
-            // )
-            // : null
+            filters[issue.type.name]
+              ? (
+                <Marker
+                  icon={issue.icon}
+                  key={`issue-${i + 1}`}
+                  position={issue.location}
+                >
+                  <Popup>
+                    <MarkerContent issue={issue} />
+                  </Popup>
+                </Marker>
+              )
+              : null
           ))
         }
         <LocateButton getToMyPosition={this.getToMyPosition} />
