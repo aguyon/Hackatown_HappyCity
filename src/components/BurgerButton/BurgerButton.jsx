@@ -7,6 +7,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import logo from '../../assets/images/HappyCityLogo.png';
+import withContext from '../Context/withContext';
 
 const useStyles = makeStyles({
   list: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-const BurgerButton = () => {
+const BurgerButton = ({ userInfo }) => {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -50,10 +51,13 @@ const BurgerButton = () => {
         <ListItem button>
           <Link to="/contact" className="Vert">Contact</Link>
         </ListItem>
-        <hr />
-        <ListItem button>
-          <Link to="/connexion" className="Vert">Connexion</Link>
-        </ListItem>
+        {
+          userInfo && userInfo.role === 'admin' ? (
+            <ListItem button>
+              <Link to="/admin" className="Vert">Admin</Link>
+            </ListItem>
+          ) : null
+        }
       </List>
       <Divider />
       <img src={logo} alt="Logo" className="MenuLogo" />
@@ -81,4 +85,4 @@ const BurgerButton = () => {
   );
 };
 
-export default BurgerButton;
+export default withContext(BurgerButton);

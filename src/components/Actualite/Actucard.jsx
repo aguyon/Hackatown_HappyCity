@@ -9,9 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import clsx from 'clsx';
 import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -43,16 +43,34 @@ const useStyles = makeStyles(theme => ({
     height: 10,
     width: 10,
   },
+  loved: {
+    color: '#00FF88',
+  },
 }));
 
 export default function Actucard({ solution }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [hided, setHided] = React.useState(false);
+  const [love, setLove] = React.useState(solution.score);
+  const [loved, setLoved] = React.useState(false);
 
   function handleExpandClick() {
     setExpanded(!expanded);
     setHided(!hided);
+  }
+
+  function handleLovedChange() {
+    setLoved(true);
+  }
+
+  function incrementOnClick() {
+    axios.put(`http://134.209.194.234/api/solutions/${solution.id}`, {
+      score: solution.score + 1,
+    }).then((res) => {
+      setLove(res.data.score);
+      handleLovedChange();
+    });
   }
 
   return (
@@ -75,11 +93,15 @@ export default function Actucard({ solution }) {
         </CardContent>
         <CardActions disableSpacing>
           <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
+            {loved
+              ? <FavoriteIcon className={classes.loved} />
+              : <FavoriteIcon onClick={() => incrementOnClick()} />
+            }
+
           </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton>
+          <div>
+            {love}
+          </div>
           <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,

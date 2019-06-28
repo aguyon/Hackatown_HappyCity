@@ -5,16 +5,22 @@ import ProfilButton from '../components/ProfilButton/ProfilButton';
 import BurgerButton from '../components/BurgerButton/BurgerButton';
 import Actucard from '../components/Actualite/Actucard';
 
-function Actualite({ solutions }) {
+function Actualite({ solutions, userInfo }) {
   return (
     <div>
       <div>
         <BurgerButton />
-        <ProfilButton />
+        {
+          userInfo && userInfo.role === 'admin' ? (
+            null
+          ) : <ProfilButton />
+        }
       </div>
       <h2>Actualités</h2>
       <div className="nbissues">
-        Dernières solutions proposées
+        {solutions.length}
+        {' '}
+        dernières actualités
       </div>
       <Grid
         item

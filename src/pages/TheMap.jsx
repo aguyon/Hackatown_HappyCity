@@ -15,13 +15,18 @@ class TheMap extends Component {
   }
 
   render() {
+    const { userInfo } = this.props;
     const { showingComments } = this.props;
     return (
       <div>
         <div>
           <BurgerButton />
+          {
+            userInfo && userInfo.role === 'admin' ? (
+              null
+            ) : <ProfilButton />
+          }
           <SearchBar />
-          <ProfilButton />
           <FilterButton />
           {
             showingComments

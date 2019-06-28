@@ -19,7 +19,9 @@ class Presentation extends Component {
           <Demo />
         </div>
         <Link to="/map" className="HappyButton">
-          Go !
+          <div className="aligngo">
+            Go !
+          </div>
         </Link>
       </div>
     );

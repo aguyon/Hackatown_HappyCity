@@ -15,6 +15,7 @@ class Connexion extends Component {
       password: '',
       redirect: false,
       errmsg: '',
+      redirectadminonsenbatlescouilles: false,
     };
   }
 
@@ -31,8 +32,13 @@ class Connexion extends Component {
       ) {
         isLog();
         getUserInfo(res.data['hydra:member'][0]);
-        console.log(res.data['hydra:member'][0]);
-        this.setState({ redirect: true });
+        if (
+          res.data['hydra:member'][0].role === 'admin'
+        ) {
+          this.setState({ redirectadminonsenbatlescouilles: true });
+        } else {
+          this.setState({ redirect: true });
+        }
       } else {
         this.setState({ errmsg: 'Username or password invalid' });
       }
@@ -56,8 +62,9 @@ class Connexion extends Component {
 
   render() {
     const {
-      username, password, redirect, errmsg,
+      username, password, redirect, errmsg, redirectadminonsenbatlescouilles,
     } = this.state;
+    if (redirectadminonsenbatlescouilles) return <Redirect to="/admin" />;
     if (redirect) return <Redirect to="/map" />;
     return (
       <div className="wholeform">
@@ -93,7 +100,6 @@ class Connexion extends Component {
               className="HappyButton btnLogin"
             >
               Login
-              {redirect ? <Link to="/map" /> : null}
             </Button>
           </FormGroup>
           <FormGroup>
