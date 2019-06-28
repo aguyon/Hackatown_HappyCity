@@ -97,14 +97,19 @@ class Connexion extends Component {
               disabled={!this.validateForm()}
               type="submit"
               value="Submit"
-              className="HappyButton btnLogin"
+              className="HappyButton"
             >
               Login
             </Button>
           </FormGroup>
           <FormGroup>
-            <Button block type="submit" value="Submit" className="HappyButton btnRegister">
-              <Link to="/inscription">Register</Link>
+            <Button
+              block
+              type="submit"
+              value="Submit"
+              className="HappyButton"
+            >
+              <Link type="submit" value="Submit" className="HappyButton" to="/inscription">Register</Link>
             </Button>
             <div className="errmsg">{errmsg}</div>
           </FormGroup>

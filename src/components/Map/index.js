@@ -13,7 +13,6 @@ import {
 import withContext from '../Context/withContext';
 import LocateButton from './locateButton';
 import constants from './const';
-import SearchBar from './search';
 import MarkerContent from './MarkerContent';
 import Comments from '../Comments/Comments';
 

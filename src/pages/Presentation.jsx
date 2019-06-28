@@ -18,11 +18,7 @@ class Presentation extends Component {
         <div className="previewBox">
           <Demo />
         </div>
-        <Link to="/map" className="HappyButton">
-          <div className="aligngo">
-            Go !
-          </div>
-        </Link>
+        <Link to="/map" className="HappyButton">Go !</Link>
       </div>
     );
   }
