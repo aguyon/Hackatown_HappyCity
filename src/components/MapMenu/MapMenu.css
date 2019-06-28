@@ -53,11 +53,23 @@
 }
 
 .Repport {
-  margin: 24px;
+  margin-left: 24px;
+  margin-right: 24px;
 }
 
 .AddNew {
   color: #00FF88;
   font-weight: bold;
   margin-left: 12px;
+}
+
+.FirstIcons {
+  width: 100%;
+  height: 60px;
+  margin-left: 24px;
+  margin-right: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
