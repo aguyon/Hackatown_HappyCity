@@ -4,6 +4,7 @@ import axios from 'axios';
 import {
   Button, Form, FormGroup, Input,
 } from 'reactstrap';
+import withContext from './Context/withContext';
 
 class IssueForm extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class IssueForm extends Component {
       description: '',
       infos: '',
     };
+    this.typeIssue = null;
   }
 
   handleInputChange = (event) => {
@@ -24,43 +26,49 @@ class IssueForm extends Component {
     });
   };
 
+  getTypeIssue = (issuesList, selectedIcon) => {
+    console.log('coucouc' + issuesList);
+    console.log('salut' + selectedIcon)
+    for (let i = 0; i < issuesList.length; i += 1) {
+      if (issuesList[i].name === selectedIcon) {
+        return issuesList[i]['@id'];
+      }
+    }
+    return false;
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     const {
       description, infos,
     } = this.state;
+    const { marker, userInfo, issuesList, selectedIcon } = this.props;
+    const { lat } = marker.position;
+    const { lng } = marker.position.lng;
+    console.log(issuesList);
+    console.log(this.getTypeIssue(issuesList, selectedIcon));
     axios.post('http://134.209.194.234/api/issues', {
-      description,
-      location: [97753, 38272],
-      status: 'In progress',
+      location: [
+        lat, lng,
+      ],
+      status: 'Processing',
       score: 1,
-      creator: 1,
-      type: {
-        name: 'dsgdsgs',
-      },
+      type: this.getTypeIssue(issuesList, selectedIcon),
+      creator: userInfo['@id'],
+      comments: [],
+      description,
     })
-      .then(res => console.log(res));
-    // {
-    //   "location": [
-    //     "string"
-    //   ],
-    //   "status": "In progress",
-    //   "score": 1,
-    //   "type": {
-    //     "name": "string"
-    //   },
-    //   "creator": "user",
-    // }
-    axios.post('http://134.209.194.234/api/comments', {
-      creator: 'test',
-      content: infos,
-      media: 'photo.png',
-      issues: 'string',
-    });
+      .then(res => console.log(`res${res}`))
+      .catch(e => console.log(`err${e}`));
+    // .then(res => axios.post('http://134.209.194.234/api/comments', {
+    //   creator: '/api/users/12',
+    //   content: 'BONJOUR',
+    //   media: '',
+    //   issues: '/api/issues/21',
+    // })),
     this.setState({
-      show: true,
     });
-  };
+  }
 
   validateForm = () => {
     const {
@@ -117,4 +125,4 @@ class IssueForm extends Component {
   }
 }
 
-export default IssueForm;
+export default withContext(IssueForm);
