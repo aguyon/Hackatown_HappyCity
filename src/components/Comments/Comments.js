@@ -63,6 +63,11 @@ class Comments extends Component {
     //   .then(res => console.log(res));
   }
 
+  close() {
+    const { showComments } = this.props;
+    showComments(false);
+  }
+
   render() {
     const { showCommentsIssue } = this.props;
     const { text } = this.state;
@@ -75,6 +80,7 @@ class Comments extends Component {
           rows={5}
           cols={33}
         />
+        <button className="buttttttton" onClick={() => this.close()} type="button">X</button>
         <button type="button" className="HappyButton" onClick={this.onSubmit}>
           Post comment
         </button>
