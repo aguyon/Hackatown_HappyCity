@@ -9,14 +9,21 @@
 .infoUser {
     display: flex;
     flex-direction: column;
-    text-align: left;
-    margin-left: 25px;
+    text-align: center;
+}
+
+.problemes {
+    margin-bottom: -5px;
 }
 
 .issuesImg {
     width: 60px;
 }
 
-.infoIssues {
-    
+.encartIssues {
+    text-align: center;
+}
+
+.infoIssuesName {
+    margin-bottom: 5px;
 }

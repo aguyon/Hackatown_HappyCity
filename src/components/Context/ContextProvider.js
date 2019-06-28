@@ -33,6 +33,7 @@ class ContextProvider extends Component {
       showingComments: false,
       showComments: this.showComments,
       showCommentsIssue: null,
+      getIssues: this.getIssues,
     };
   }
 
@@ -48,16 +49,7 @@ class ContextProvider extends Component {
           issuesList: res.data['hydra:member'],
         });
       });
-    axios.get('http://134.209.194.234/api/issues')
-      .then((res) => {
-        const data = res.data['hydra:member'];
-        for (let i = 0; i < data.length; i += 1) {
-          data[i].icon = leafletIcon(`./assets/${data[i].type.name}.png`);
-        }
-        this.setState({
-          issues: data,
-        });
-      });
+    this.getIssues();
     axios.get('http://134.209.194.234/api/solutions')
       .then(res => this.setState({
         solutions: res.data['hydra:member'],
@@ -112,6 +104,19 @@ class ContextProvider extends Component {
 
   getUserInfo = (info) => {
     this.setState({ userInfo: info });
+  }
+
+  getIssues = () => {
+    axios.get('http://134.209.194.234/api/issues')
+      .then((res) => {
+        const data = res.data['hydra:member'];
+        for (let i = 0; i < data.length; i += 1) {
+          data[i].icon = leafletIcon(`./assets/${data[i].type.name}.png`);
+        }
+        this.setState({
+          issues: data,
+        });
+      });
   }
 
   changeFilters = (filter) => {
