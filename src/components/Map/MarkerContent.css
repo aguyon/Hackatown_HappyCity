@@ -1,0 +1,34 @@
+.VotePlusContainer {
+  display: flex;
+  flex-direction: row;
+ }
+ 
+.VotePlus {
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ margin-right: 24px !important;
+}
+
+.VoteNumber {
+  color: #FF3600;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.PlusIcon {
+  height: 30px;
+  width: 30px;
+}
+
+.VoteButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 24px 0px 12px;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 1em;
+  background-color: #FF3600;
+  border-radius: 50px;
+}

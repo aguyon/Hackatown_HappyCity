@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Inscription/style.css';
+import './IssueForm.css';
 import axios from 'axios';
 import {
   Button, Form, FormGroup, Input,
@@ -42,12 +43,13 @@ class IssueForm extends Component {
       description,
     } = this.state;
     const {
-      marker, userInfo, issuesList, selectedIcon, getIssues,
+      marker,
+      userInfo,
+      issuesList,
+      selectedIcon,
     } = this.props;
-    const { lat } = marker.position.lat;
+    const { lat } = marker.position;
     const { lng } = marker.position.lng;
-    console.log(issuesList);
-    console.log(this.getTypeIssue(issuesList, selectedIcon));
     axios.post('http://134.209.194.234/api/issues', {
       location: [
         lat, lng,
@@ -60,8 +62,8 @@ class IssueForm extends Component {
       description,
     })
       .then(res => console.log(`res${res}`))
-      .catch(e => console.log(`err${e}`))
-      .then(getIssues());
+      .catch(e => console.log(`err${e}`));
+    //  .then(getIssues());
     // .then(res => axios.post('http://134.209.194.234/api/comments', {
     //   creator: '/api/users/12',
     //   content: 'BONJOUR',
@@ -87,26 +89,26 @@ class IssueForm extends Component {
       infos,
     } = this.state;
     return (
-      <div className="form_container">
+      <div className="HappyForm">
         <div className="title">
           <h2>Submit new issue</h2>
         </div>
         <Form onSubmit={this.handleSubmit}>
-          <FormGroup>
+          <FormGroup className="HappyFormGroup">
             <Input
               name="description"
               type="description"
-              className="inputRegister"
+              className="HappyInput"
               checked={description}
               onChange={this.handleInputChange}
               placeholder="Description"
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="HappyFormGroup">
             <Input
               name="infos"
               type="infos"
-              className="inputRegister"
+              className="HappyInput"
               checked={infos}
               onChange={this.handleInputChange}
               placeholder="Additionnal infos"

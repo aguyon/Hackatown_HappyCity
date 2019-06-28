@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import withContext from '../Context/withContext';
 import './MapMenu.css';
 import IssueForm from '../IssueForm';
-import More from '../../assets/icons/more-orange-dark.png';
+import More from '../../assets/icons/more-green.png';
 import Comments from '../Comments/Comments';
 
 const useStyles = makeStyles({
@@ -56,16 +56,28 @@ function MapMenu({
     <div className="MapMenu">
       {
         !confirmed
-          ? issuesList.map((issue, i) => (
-            <div key={`issue-${i + 1}`}>
-              {
-                issue.name
-              }
-              <button type="button" onClick={() => selectIcon(issue)}>
-                <img src={`./assets/${issue.name}.png`} alt="" />
-              </button>
+          ? (
+            <div className="Repport">
+              <h1>Repport a problem</h1>
+              {issuesList
+                .map((issue, i) => (
+                  <div key={`issue-${i + 1}`} className="IssuesList">
+                    <button type="button" onClick={() => selectIcon(issue)}>
+                      <img src={`./assets/${issue.name}.png`} alt="" />
+                    </button>
+                    <p className="IssuesNames">
+                      {
+                        issue.name
+                      }
+                    </p>
+                  </div>
+                ))}
+              <div className="IssuesList">
+                <img src={More} alt="" />
+                <p className="AddNew">Add a new category</p>
+              </div>
             </div>
-          ))
+          )
           : (
             <div
               className={classes.fullList}
