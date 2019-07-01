@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Hackatown_HappyCity/static/css/main.8c1089a7.chunk.css",
+    "main.js": "/Hackatown_HappyCity/static/js/main.5ede109e.chunk.js",
+    "main.js.map": "/Hackatown_HappyCity/static/js/main.5ede109e.chunk.js.map",
+    "runtime~main.js": "/Hackatown_HappyCity/static/js/runtime~main.30c438c9.js",
+    "runtime~main.js.map": "/Hackatown_HappyCity/static/js/runtime~main.30c438c9.js.map",
+    "static/css/2.098bc035.chunk.css": "/Hackatown_HappyCity/static/css/2.098bc035.chunk.css",
+    "static/js/2.7c09e611.chunk.js": "/Hackatown_HappyCity/static/js/2.7c09e611.chunk.js",
+    "static/js/2.7c09e611.chunk.js.map": "/Hackatown_HappyCity/static/js/2.7c09e611.chunk.js.map",
+    "index.html": "/Hackatown_HappyCity/index.html",
+    "precache-manifest.6a96690c1b439ef6d6705e5c5d05d9a8.js": "/Hackatown_HappyCity/precache-manifest.6a96690c1b439ef6d6705e5c5d05d9a8.js",
+    "service-worker.js": "/Hackatown_HappyCity/service-worker.js",
+    "static/css/2.098bc035.chunk.css.map": "/Hackatown_HappyCity/static/css/2.098bc035.chunk.css.map",
+    "static/css/main.8c1089a7.chunk.css.map": "/Hackatown_HappyCity/static/css/main.8c1089a7.chunk.css.map",
+    "static/media/Electric.png": "/Hackatown_HappyCity/static/media/Electric.74168996.png",
+    "static/media/HappyCityFullLogo.png": "/Hackatown_HappyCity/static/media/HappyCityFullLogo.0283bf12.png",
+    "static/media/HappyCityLogo.png": "/Hackatown_HappyCity/static/media/HappyCityLogo.2e74f463.png"
+  }
+}
