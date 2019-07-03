@@ -1,4 +1,4 @@
-# Hackaton Projet
+# Hackaton
 
 Application Mobile développée à la [Wild Code School](https://wildcodeschool.com) dans le cadre d'un Hackaton de 48h sur le thème **« Repensons la citoyenneté de demain »**
 
